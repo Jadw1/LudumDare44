@@ -23,11 +23,11 @@ public class InputHandler : MonoBehaviour {
 
         if(gridPos != previousHighlight) {
             if(tilemap.HasOverlay(gridPos)) {
-                overlay.SetTileColorNormal(gridPos);
+                overlay.SetTileColorHover(gridPos);
             }
 
             if(tilemap.HasOverlay(previousHighlight)) {
-                overlay.SetTileColorHover(previousHighlight);
+                overlay.SetTileColorNormal(previousHighlight);
             }
 
             previousHighlight = gridPos;
