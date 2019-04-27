@@ -5,11 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class TileEntity : MonoBehaviour {
 
-    private TilePos position;
+    protected TilePos position;
     private bool isMoving = false;
-    private bool doRecall = false;
+    protected bool doRecall = false;
     private Vector3 targetPosition = new Vector3();
-    private Vector3 knockback = new Vector3(0, 0, 0);
+    protected Vector3 knockback = new Vector3(0, 0, 0);
     private Vector3 dummy = new Vector3();
 
     protected void Start() {
@@ -22,20 +22,6 @@ public class TileEntity : MonoBehaviour {
     }
 
     public void Move(TilePos to, TileEntity entity) {
-        Enemy enemy = entity as Enemy;
-        if(enemy != null) {
-            knockback = (to - position).AsNormalizedVector();
-            doRecall = true;
-        }
-
-        RealItem item = entity as RealItem;
-        if(item != null && this is Player) {
-            if (Inventory.GetInstance().AddItem(item.GetID())) {
-                Destroy(item.gameObject);
-            }
-        }
-
-
         TilePos off = (doRecall) ? (to - position).AsUnitTilePos() : new TilePos(0, 0);
         position = to  - off;
 
