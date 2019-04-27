@@ -27,12 +27,20 @@ public class ItemRegistry : MonoBehaviour {
         return items[id];
     }
 
-    public void CreateRealItem(int id, TilePos pos) {
+    public bool CreateRealItem(int id, TilePos pos) {
         if(id < 0 || id > items.Length)
-            return;
+            return false;
+        
+        // TODO Validity check
+        TilemapManager tilemap = TilemapManager.GetInstance();
+        
+        if (!tilemap.IsEmpty(pos) || (GameMaster.GetTileEntity(pos) as RealItem) != null) return false;
 
         GameObject item = Instantiate(realObjectPrefab);
         item.transform.position = pos.AsVector();
-        item.GetComponent<RealItem>().CreateFromItem(items[id]);
+        RealItem realItem = item.GetComponent<RealItem>();
+        realItem.CreateFromItem(items[id]);
+        GameMaster.RegisterNewItem(realItem);
+        return true;
     }
 }

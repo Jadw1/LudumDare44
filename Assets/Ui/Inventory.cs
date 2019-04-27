@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
+    
+    #region SINGLETON PATTERN
+    private static Inventory INSTANCE = null;
+
+    public static Inventory GetInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = (Inventory)FindObjectOfType(typeof(Inventory));
+        }
+
+        return INSTANCE;
+    }
+    #endregion
+    
     private ItemRegistry registry;
 
     private Image selectedItemImage;
@@ -66,6 +79,9 @@ public class Inventory : MonoBehaviour {
 
     public void DropSelected() {
         if (selected == -1) return;
+
+        if (!registry.CreateRealItem(slots[selected].GetItem().ID, GameMaster.GetPlayer().GetPos())) return;
+
         slots[selected].Empty();
         selectedItemImage.enabled = false;
         selectedItemDescription.text = "";

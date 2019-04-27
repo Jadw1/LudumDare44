@@ -28,6 +28,13 @@ public class TileEntity : MonoBehaviour {
             doRecall = true;
         }
 
+        RealItem item = entity as RealItem;
+        if(item != null && this is Player) {
+            if (Inventory.GetInstance().AddItem(item.GetID())) {
+                Destroy(item.gameObject);
+            }
+        }
+
 
         TilePos off = (doRecall) ? (to - position).AsUnitTilePos() : new TilePos(0, 0);
         position = to  - off;

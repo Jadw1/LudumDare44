@@ -8,11 +8,11 @@ public enum PlayerAction {
 }
 
 public class GameMaster : MonoBehaviour {
-    private Player player;
+    private static Player player;
     private IAbility currentAbility;
 
-    private Hashtable enemies;
-    private Hashtable items;
+    private static Hashtable enemies;
+    private static Hashtable items;
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -62,12 +62,32 @@ public class GameMaster : MonoBehaviour {
         ReceiveAbilityCall(player.GetMoveAbility());
     }
 
-    public TileEntity GetTileEntity(TilePos pos) {
+    public static TileEntity GetTileEntity(TilePos pos) {
         if(enemies.ContainsKey(pos))
             return enemies[pos] as Enemy;
         else if (items.ContainsKey(pos))
             return items[pos] as RealItem;
         else
             return null;
+    }
+
+    public static Player GetPlayer() {
+        return player;
+    }
+
+    public static void RegisterNewItem(RealItem item) {
+        items.Add(item.GetPos(), item);
+    }
+
+    public static void RegisterNewEnemy(Enemy enemy) {
+        enemies.Add(enemy.GetPos(), enemy);
+    }
+
+    public static void UnregisterItem(RealItem item) {
+        items.Remove(item.GetPos());
+    }
+
+    public static void UnregisterEnemy(Enemy enemy) {
+        enemies.Remove(enemy.GetPos());
     }
 }

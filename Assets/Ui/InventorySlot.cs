@@ -54,6 +54,7 @@ public class InventorySlot : MonoBehaviour {
         itemButton.interactable = false;
         itemImage.enabled = false;
         this.item = null;
+        Deselect();
     }
 
     public void Select() {
