@@ -47,6 +47,9 @@ TagManager:
   - name: Middle
     uniqueID: 493893283
     locked: 0
+  - name: Character
+    uniqueID: 2591345595
+    locked: 0
   - name: Top
     uniqueID: 937550651
     locked: 0
