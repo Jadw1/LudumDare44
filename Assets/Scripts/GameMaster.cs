@@ -4,22 +4,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameMaster : MonoBehaviour {
-    private Tilemap top;
-    private Tilemap middle;
-    private Tilemap bottom;
-    private Tilemap overlay;
-
     private TileEntity player;
-
     private TileEntity[] enemies;
 
     private void Start() {
-        Grid grid = (Grid) FindObjectOfType(typeof(Grid));
-
-        top = grid.transform.Find("Top").GetComponent<Tilemap>();
-        middle = grid.transform.Find("Middle").GetComponent<Tilemap>();
-        bottom = grid.transform.Find("Bottom").GetComponent<Tilemap>();
-
         player = GameObject.FindWithTag("Player").GetComponent<TileEntity>();
         
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
@@ -31,13 +19,14 @@ public class GameMaster : MonoBehaviour {
     }
 
     public TilePos[] GetValidMoves() {
+        TilemapManager tilemap = TilemapManager.GetInstance();
         List<TilePos> moves = new List<TilePos>();
         
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 if (x != 0 || y != 0) {
                     TilePos pos = player.GetPos() + new TilePos(x, y);
-                    if (bottom.HasTile(pos.AsVector())) {
+                    if (tilemap.IsEmpty(pos)) {
                         moves.Add(pos);
                     }
                 }

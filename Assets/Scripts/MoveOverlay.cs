@@ -4,23 +4,15 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MoveOverlay : MonoBehaviour {
-    [SerializeField]
-    private Tile highlightTile = null;
-
     private Color highlightNormal = new Color(1.0f, 1.0f, 1.0f, 0.2f);
     private Color highlightHover = new Color(1.0f, 1.0f, 0.0f, 0.2f);
 
     private TilePos previousHighlight;
 
-    private Tilemap overlay;
-
     private TileEntity player;
     private GameMaster master;
 
     private void Start() {
-        Grid grid = (Grid) FindObjectOfType(typeof(Grid));
-        overlay = grid.transform.Find("Overlay").GetComponent<Tilemap>();
-
         previousHighlight = new TilePos();
 
         player = GameObject.FindWithTag("Player").GetComponent<TileEntity>();
@@ -30,37 +22,36 @@ public class MoveOverlay : MonoBehaviour {
     }
 
     private void Update() {
+        TilemapManager tilemap = TilemapManager.GetInstance();
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        TilePos gridPos = new TilePos(overlay.WorldToCell(mousePos));
+        TilePos gridPos = tilemap.WorldToCell(mousePos);
         
         if (gridPos != previousHighlight) {
-            if (overlay.HasTile(gridPos.AsVector())) {
-                overlay.SetColor(gridPos.AsVector(), highlightHover);
+            if (tilemap.HasOverlay(gridPos)) {
+                tilemap.SetOverlayColor(gridPos, highlightHover);
             }
             
-            if (overlay.HasTile(previousHighlight.AsVector())) {
-                overlay.SetColor(previousHighlight.AsVector(), highlightNormal);
+            if (tilemap.HasOverlay(previousHighlight)) {
+                tilemap.SetOverlayColor(previousHighlight, highlightNormal);
             }
 
             previousHighlight = gridPos;
         }
 
-        if (Input.GetMouseButtonDown(0) && overlay.HasTile(gridPos.AsVector())) {
+        if (Input.GetMouseButtonDown(0) && tilemap.HasOverlay(gridPos)) {
             master.Move(gridPos);
             RebuildOverlay();
         }
     }
 
     private void RebuildOverlay() {
-        overlay.ClearAllTiles();
+        TilemapManager tilemap = TilemapManager.GetInstance();
+        tilemap.ClearOverlay();
 
         TilePos[] moves = master.GetValidMoves();
 
         foreach (TilePos move in moves) {
-            Vector3Int pos = move.AsVector();
-            overlay.SetTile(pos, highlightTile);
-            overlay.SetTileFlags(pos, TileFlags.LockTransform);
-            overlay.SetColor(pos, highlightNormal);
+            tilemap.SetOverlay(move, highlightNormal);
         }
     }
 }

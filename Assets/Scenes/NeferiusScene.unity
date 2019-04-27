@@ -1442,6 +1442,7 @@ GameObject:
   - component: {fileID: 1372784026}
   - component: {fileID: 1372784025}
   - component: {fileID: 1372784027}
+  - component: {fileID: 1372784028}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -1461,7 +1462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9a70ac634f7814c8a6eafba44617fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightTile: {fileID: 11400000, guid: 03506a9b209124f4cad83f154b00c7fb, type: 2}
 --- !u!4 &1372784026
 Transform:
   m_ObjectHideFlags: 0
@@ -1486,6 +1486,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b34c73de25e65f24298bbb40ee02b867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1372784028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372784024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4f0c4dfc8455349941a3c29b35ee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightTile: {fileID: 11400000, guid: 03506a9b209124f4cad83f154b00c7fb, type: 2}
