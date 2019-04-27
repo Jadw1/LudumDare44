@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 currentVelocity = new Vector3();
 
     private void rebuildOverlay() {
+        GameMaster master = GameMaster.getGameMaster();
+        
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 Vector3Int pos = overlayLayer.WorldToCell(transform.position) + new Vector3Int(x - 1, y - 1, 0);
-                if ((x != 1 || y != 1) && floorLayer.HasTile(pos)) {
+                if ((x != 1 || y != 1) && master.canPass(pos)) {
                     overlayLayer.SetTile(pos, tile);
                     overlayLayer.SetTileFlags(pos, TileFlags.LockTransform);
                     overlayLayer.SetColor(pos, normal);

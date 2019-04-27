@@ -865,16 +865,16 @@ TextureImporter:
     second: 0x72_DungeonTilesetII_v1.2_286
   - first:
       213: 946491003796122338
-    second: 0x72_DungeonTilesetII_v1.2_287
+    second: orc_0
   - first:
       213: 1070874015390654649
-    second: 0x72_DungeonTilesetII_v1.2_288
+    second: orc_1
   - first:
       213: 6279701332576647775
-    second: 0x72_DungeonTilesetII_v1.2_289
+    second: orc_2
   - first:
       213: -2849970231911113198
-    second: 0x72_DungeonTilesetII_v1.2_290
+    second: orc_3
   - first:
       213: -6769878642219842375
     second: 0x72_DungeonTilesetII_v1.2_291
@@ -7323,7 +7323,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.2_287
+      name: orc_0
       rect:
         serializedVersion: 2
         x: 368
@@ -7344,7 +7344,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.2_288
+      name: orc_1
       rect:
         serializedVersion: 2
         x: 384
@@ -7365,7 +7365,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.2_289
+      name: orc_2
       rect:
         serializedVersion: 2
         x: 400
@@ -7386,7 +7386,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.2_290
+      name: orc_3
       rect:
         serializedVersion: 2
         x: 416
