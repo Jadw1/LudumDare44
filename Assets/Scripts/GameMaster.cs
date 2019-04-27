@@ -26,7 +26,7 @@ public class GameMaster : MonoBehaviour {
             enemies[i] = objects[i].GetComponent<TileEntity>();
         }
 
-        action = PlayerAction.Move;
+        ChangeAction(PlayerAction.Move);
     }
 
     private TilePos[] ValidateTiles(TilePos[] tiles) {
