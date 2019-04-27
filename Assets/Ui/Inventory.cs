@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
 
     private Image selectedItemImage;
     private Text selectedItemDescription;
-    private InventorySlot[] slots = new InventorySlot[15];
+    private InventorySlot[] slots = new InventorySlot[20];
 
     private int selected = -1;
 
@@ -17,8 +17,14 @@ public class Inventory : MonoBehaviour {
 
         Transform inv = transform.Find("Slots");
         
-        for (int i = 0; i < slots.Length; i++) {
+        for (int i = 0; i < 15; i++) {
             slots[i] = inv.GetChild(i).GetComponent<InventorySlot>();
+        }
+
+        Transform eqp = transform.Find("Equiped");
+        
+        for (int i = 15; i < slots.Length; i++) {
+            slots[i] = eqp.GetChild(i-15).GetComponent<InventorySlot>();
         }
 
         Transform details = transform.Find("ItemDetails").Find("Details");
@@ -37,8 +43,7 @@ public class Inventory : MonoBehaviour {
         if (item == null) return false;
 
         foreach (InventorySlot slot in slots) {
-            if (slot.IsEmpty()) {
-                slot.SetItem(item);
+            if (slot.IsEmpty() && slot.SetItem(item)) {
                 return true;
             }
         }
@@ -47,9 +52,13 @@ public class Inventory : MonoBehaviour {
     }
 
     public void SelectSlot(int selection) {
-        selected = selection;
-        Item item = slots[selected].GetItem();
+        if (selected != -1) {
+            slots[selected].Deselect();
+        }
 
+        selected = selection;
+        slots[selected].Select();
+        Item item = slots[selected].GetItem();
         selectedItemImage.enabled = true;
         selectedItemImage.sprite = item.icon;
         selectedItemDescription.text = item.description;
@@ -61,5 +70,33 @@ public class Inventory : MonoBehaviour {
         selectedItemImage.enabled = false;
         selectedItemDescription.text = "";
         selected = -1;
+    }
+
+    public void UseSelected() {
+        if (selected == -1 || selected > 14) return;
+
+        Item item = slots[selected].GetItem();
+
+        if (item.type == ItemType.WEAPON) {
+            slots[selected].SetItem(slots[15].GetItem());
+            slots[15].SetItem(item);
+            SelectSlot(15);
+        } else if (item.type == ItemType.SHIELD) {
+            slots[selected].SetItem(slots[16].GetItem());
+            slots[16].SetItem(item);
+            SelectSlot(16);
+        } else if (item.type == ItemType.ARMOR) {
+            slots[selected].SetItem(slots[17].GetItem());
+            slots[17].SetItem(item);
+            SelectSlot(17);
+        } else if (item.type == ItemType.HELMET) {
+            slots[selected].SetItem(slots[18].GetItem());
+            slots[18].SetItem(item);
+            SelectSlot(18);
+        } else if (item.type == ItemType.RING) {
+            slots[selected].SetItem(slots[19].GetItem());
+            slots[19].SetItem(item);
+            SelectSlot(19);
+        }
     }
 }
