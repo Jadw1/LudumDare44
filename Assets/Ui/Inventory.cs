@@ -16,8 +16,6 @@ public class Inventory : MonoBehaviour {
         return INSTANCE;
     }
     #endregion
-    
-    private ItemRegistry registry;
 
     private Image selectedItemImage;
     private Text selectedItemDescription;
@@ -26,8 +24,6 @@ public class Inventory : MonoBehaviour {
     private int selected = -1;
 
     private void Start() {
-        registry = GetComponent<ItemRegistry>();
-
         Transform inv = transform.Find("Slots");
         
         for (int i = 0; i < 15; i++) {
@@ -46,12 +42,17 @@ public class Inventory : MonoBehaviour {
         selectedItemDescription = details.Find("Text").GetComponent<Text>();
 
         AddItem(0);
-        AddItem(0);
-        AddItem(0);
+        AddItem(1);
+        AddItem(2);
+        AddItem(3);
+        AddItem(4);
+        AddItem(5);
+        AddItem(5);
         AddItem(0);
     }
 
     public bool AddItem(int id) {
+        ItemRegistry registry = ItemRegistry.GetInstance();
         Item item = registry.GetItem(id);
         if (item == null) return false;
 
@@ -79,7 +80,7 @@ public class Inventory : MonoBehaviour {
 
     public void DropSelected() {
         if (selected == -1) return;
-
+        ItemRegistry registry = ItemRegistry.GetInstance();
         if (!registry.CreateRealItem(slots[selected].GetItem().ID, GameMaster.GetPlayer().GetPos())) return;
 
         slots[selected].Empty();
