@@ -38,43 +38,26 @@ public class GameMaster : MonoBehaviour {
         for (int i = 0; i < enemies.Length; i++) {
             enemies[i] = objects[i].GetComponent<TileEntity>();
         }
-
-        RebuildOverlay();
     }
 
-    private void Update() {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int gridPos = overlay.WorldToCell(mousePos);
+    public TilePos[] GetValidMoves() {
+        List<TilePos> moves = new List<TilePos>();
         
-        if (gridPos != previousOverlayHighlight) {
-            if (overlay.HasTile(gridPos)) {
-                overlay.SetColor(gridPos, overlayColorHighlight);
-            }
-            
-            if (overlay.HasTile(previousOverlayHighlight)) {
-                overlay.SetColor(previousOverlayHighlight, overlayColorNormal);
-            }
-
-            previousOverlayHighlight = gridPos;
-        }
-
-        if (Input.GetMouseButtonDown(0) && overlay.HasTile(gridPos)) {
-            player.MoveTo(gridPos.x, gridPos.y);
-            RebuildOverlay();
-        }
-    }
-
-    private void RebuildOverlay() {
-        overlay.ClearAllTiles();
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                Vector3Int pos = player.GetPos() + new Vector3Int(x - 1, y - 1, 0);
-                if ((x != 1 || y != 1) && bottom.HasTile(pos)) {
-                    overlay.SetTile(pos, highlightTile);
-                    overlay.SetTileFlags(pos, TileFlags.LockTransform);
-                    overlay.SetColor(pos, overlayColorNormal);
+        for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y++) {
+                if (x != 0 || y != 0) {
+                    TilePos pos = player.GetPos() + new TilePos(x, y);
+                    if (bottom.HasTile(pos.AsVector())) {
+                        moves.Add(pos);
+                    }
                 }
             }
         }
+
+        return (TilePos[]) moves.ToArray();
+    }
+
+    public void Move(TilePos pos) {
+        player.Move(pos);
     }
 }

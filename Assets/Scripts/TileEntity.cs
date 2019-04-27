@@ -10,7 +10,7 @@ public class TileEntity : MonoBehaviour {
     private Vector3 dummy = new Vector3();
 
     private void Start() {
-        Tilemap grid = (Tilemap) FindObjectOfType(typeof(Tilemap));
+        Grid grid = (Grid) FindObjectOfType(typeof(Grid));
         Vector3Int pos = grid.WorldToCell(this.transform.position);
 
         posX = pos.x;
@@ -19,24 +19,16 @@ public class TileEntity : MonoBehaviour {
         targetPosition = pos;
     }
     
-    public void Move(int x, int y) {
-        posX += x;
-        posY += y;
+    public void Move(TilePos to) {
+        posX = to.x;
+        posY = to.y;
 
-        targetPosition = new Vector3(x, y, 0);
+        targetPosition = new Vector3(posX, posY, 0);
         isMoving = true;
     }
 
-    public void MoveTo(int x, int y) {
-        posX = x;
-        posY = y;
-
-        targetPosition = new Vector3(x, y, 0);
-        isMoving = true;
-    }
-
-    public Vector3Int GetPos() {
-        return new Vector3Int(this.posX, this.posY, 0);
+    public TilePos GetPos() {
+        return new TilePos(this.posX, this.posY);
     }
 
     private void Update() {
