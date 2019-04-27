@@ -47,9 +47,13 @@ public class Inventory : MonoBehaviour {
     }
 
     public void SelectSlot(int selection) {
-        selected = selection;
-        Item item = slots[selected].GetItem();
+        if (selected != -1) {
+            slots[selected].Deselect();
+        }
 
+        selected = selection;
+        slots[selected].Select();
+        Item item = slots[selected].GetItem();
         selectedItemImage.enabled = true;
         selectedItemImage.sprite = item.icon;
         selectedItemDescription.text = item.description;
