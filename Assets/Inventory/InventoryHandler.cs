@@ -25,6 +25,8 @@ public class InventoryHandler : MonoBehaviour {
 
     private ItemData[] items;
     private ItemSlotHandler[] slots;
+    private InfoPanelHandler infoPanel;
+    private int selection;
 
     private void Start() {
         instance = this;
@@ -36,6 +38,8 @@ public class InventoryHandler : MonoBehaviour {
             slots[i].SetSlot(i);
         }
 
+        infoPanel = GameObject.FindObjectOfType<InfoPanelHandler>();
+
         RebuildInventory();
     }
 
@@ -43,6 +47,25 @@ public class InventoryHandler : MonoBehaviour {
         foreach (ItemSlotHandler slot in slots) {
             slot.UpdateSlot();
         }
+    }
+
+    public void SelectItem(int slot) {
+        selection = slot;
+        infoPanel.SetItem(items[slot]);
+    }
+
+    public void DeselectItem() {
+        selection = -1;
+        infoPanel.Clear();
+    }
+
+    public int GetSelection() {
+        return selection;
+    }
+
+    public ItemData GetSelectedItem() {
+        if (selection == -1) return null;
+        return items[selection];
     }
 
     public ItemData GetItem(int slot) {
@@ -61,7 +84,7 @@ public class InventoryHandler : MonoBehaviour {
 
     public bool AddItem(ItemData item) {
         for (int i = 0; i < items.Length; i++) {
-            if (items[i] == null) {
+            if (items[i] == null && !slots[i].IsEquipmentSlot()) {
                 SetItem(i, item);
                 return true;
             }
