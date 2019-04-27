@@ -48,10 +48,10 @@ public class MoveOverlay : MonoBehaviour {
         TilemapManager tilemap = TilemapManager.GetInstance();
         tilemap.ClearOverlay();
 
-        TilePos[] moves = master.GetValidMoves();
+        TilePos[] tiles = master.GetValidTiles();
 
-        foreach (TilePos move in moves) {
-            tilemap.SetOverlay(move, highlightNormal);
+        foreach (TilePos tile in tiles) {
+            tilemap.SetOverlay(tile, highlightNormal);
         }
     }
 }
