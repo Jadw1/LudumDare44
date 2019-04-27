@@ -23,7 +23,7 @@ public class TilePos {
     public Vector3Int AsVector() {
         return new Vector3Int(x, y, 0);
     }
-    
+
     public static TilePos operator +(TilePos a, TilePos b) {
         return new TilePos(a.x + b.x, a.y + b.y);
     }
@@ -44,16 +44,14 @@ public class TilePos {
         return new TilePos(a.x * b, a.y * b);
     }
 
-    public override bool Equals(object obj)
-    {
+    public override bool Equals(object obj) {
         TilePos pos = obj as TilePos;
-        if (pos == null)
+        if(pos == null)
             return false;
         return this == pos;
     }
 
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
         return (x << 16) ^ y;
     }
 }

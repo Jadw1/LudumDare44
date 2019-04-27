@@ -16,6 +16,9 @@ public class ItemRegistry : MonoBehaviour {
     [SerializeField]
     private Item[] items;
 
+    [SerializeField]
+    private GameObject realObjectPrefab;
+
     public Item GetItem(int id) {
         if (id < 0 || id > items.Length) {
             return null;
@@ -23,4 +26,6 @@ public class ItemRegistry : MonoBehaviour {
         
         return items[id];
     }
+
+    public void 
 }

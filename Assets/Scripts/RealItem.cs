@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class RealItem : MonoBehaviour {
     [SerializeField]
-    private int health;
+    private int ID;
 
-
+    private TilePos pos;
 }
