@@ -10,13 +10,10 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler {
     
     private void Start() {
         icon = transform.GetChild(0).GetComponent<Image>();
-        slot = transform.GetSiblingIndex();
-        UpdateSlot();
     }
 
     public void SetSlot(int slot) {
         this.slot = slot;
-        UpdateSlot();
     }
 
     public int GetSlot() {
@@ -26,8 +23,8 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler {
     public void UpdateSlot() {
         ItemData item = InventoryHandler.instance.GetItem(slot);
         if (item != null) {
-            icon.sprite = item.icon;
             icon.enabled = true;
+            icon.sprite = item.icon;
         } else {
             icon.sprite = null;
             icon.enabled = false;

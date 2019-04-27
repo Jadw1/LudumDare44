@@ -18,13 +18,14 @@ public class Player : Creature {
             doRecall = true;
             DealDamage(enemy, damage);
         }
-
+        
         RealItem item = entity as RealItem;
         if(item != null) {
-            if(Inventory.GetInstance().AddItem(item.GetID())) {
+            if(InventoryHandler.instance.AddItem(item.item)) {
                 Destroy(item.gameObject);
             }
         }
+        
         base.Move(to, entity);
     }
 

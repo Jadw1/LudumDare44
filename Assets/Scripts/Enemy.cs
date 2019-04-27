@@ -11,7 +11,6 @@ public class Enemy : Creature {
     public override void TakeDamage(int d) {
         health -= d;
         if(health <= 0) {
-            ItemRegistry.GetInstance().CreateRealItem(0, GetPos());
             GameMaster.UnregisterEnemy(this);
             Destroy(this.gameObject);
         }

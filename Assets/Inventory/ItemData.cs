@@ -2,6 +2,8 @@
 
 [System.Serializable]
 public class ItemData {
-    [SerializeField]
     public Sprite icon;
+    public string name;
+    public string description;
+    public int price;
 }

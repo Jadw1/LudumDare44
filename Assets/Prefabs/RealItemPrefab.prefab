@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93de4522a07bc342bda1ef3a31accc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  item:
+    icon: {fileID: -2113889980383724603, guid: 9ffc69242c22ad448b5fb7ac642502b3, type: 3}
+    name: Apple
+    description: Can be eaten.
+    price: 2
 --- !u!1 &6903410330937829950
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +117,8 @@ SpriteRenderer:
   m_SortingLayerID: -1703621701
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 401763900112944413, guid: 603388c4450a02c4fa4fd0b1a87b80f2, type: 3}
+  m_Sprite: {fileID: -2113889980383724603, guid: 9ffc69242c22ad448b5fb7ac642502b3,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

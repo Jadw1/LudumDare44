@@ -4,16 +4,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class RealItem : TileEntity {
-    [SerializeField]
-    private int ID;
+    public ItemData item;
 
-    public int GetID() {
-        return ID;
-    }
-
-    public void CreateFromItem(Item item) {
+    private void Start() {
         base.Start();
-        ID = item.ID;
         transform.GetComponentInChildren<SpriteRenderer>().sprite = item.icon;
     }
 
