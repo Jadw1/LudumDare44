@@ -24,6 +24,8 @@ public class GameMaster : MonoBehaviour {
         }
 
         SetDefaultAbility();
+
+        ItemRegistry.GetInstance().CreateRealItem(0, new TilePos(-1, -1));
     }
 
     private TilePos[] ValidateTiles(TilePos[] tiles) {
