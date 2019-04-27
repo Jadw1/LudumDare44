@@ -26,7 +26,7 @@ public class GameMaster : MonoBehaviour {
             enemies[i] = objects[i].GetComponent<TileEntity>();
         }
 
-        action = PlayerAction.Range;
+        action = PlayerAction.Move;
     }
 
     public TilePos[] GetValidTiles(int range = 3) {
