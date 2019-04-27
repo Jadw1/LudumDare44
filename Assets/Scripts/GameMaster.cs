@@ -4,15 +4,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameMaster : MonoBehaviour {
-
-    [SerializeField]
-    private Tile highlightTile = null;
-
-    private Color overlayColorNormal = new Color(1.0f, 1.0f, 1.0f, 0.2f);
-    private Color overlayColorHighlight = new Color(1.0f, 1.0f, 0.0f, 0.2f);
-
-    private Vector3Int previousOverlayHighlight = new Vector3Int();
-
     private Tilemap top;
     private Tilemap middle;
     private Tilemap bottom;
@@ -28,7 +19,6 @@ public class GameMaster : MonoBehaviour {
         top = grid.transform.Find("Top").GetComponent<Tilemap>();
         middle = grid.transform.Find("Middle").GetComponent<Tilemap>();
         bottom = grid.transform.Find("Bottom").GetComponent<Tilemap>();
-        overlay = grid.transform.Find("Overlay").GetComponent<Tilemap>();
 
         player = GameObject.FindWithTag("Player").GetComponent<TileEntity>();
         
