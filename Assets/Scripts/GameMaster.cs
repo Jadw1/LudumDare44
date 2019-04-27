@@ -11,10 +11,7 @@ public class GameMaster : MonoBehaviour {
     private Player player;
     private TileEntity[] enemies;
 
-    private PlayerAction action;
-
-    [SerializeField]
-    private int playerRange = 2;
+    private IAbility currentAbility;
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -26,7 +23,7 @@ public class GameMaster : MonoBehaviour {
             enemies[i] = objects[i].GetComponent<TileEntity>();
         }
 
-        ChangeAction(PlayerAction.Move);
+        SetDefaultAbility();
     }
 
     private TilePos[] ValidateTiles(TilePos[] tiles) {
@@ -43,17 +40,20 @@ public class GameMaster : MonoBehaviour {
         return possibilities.ToArray();
     }
 
+    public void PerformAction(TilePos pos) {
+        currentAbility.Execute(pos);
+        SetDefaultAbility();
+    }
 
-    public void ChangeAction(PlayerAction action) {
-        this.action = action;
-
-        TilePos[] tiles = ValidateTiles(player.GetValidTiles());
+    public void ReceiveAbilityCall(IAbility ability)
+    {
+        currentAbility = ability;
+        TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles());
         OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
 
-    public void PerformAction(TilePos pos) {
-        player.Execute(pos);
-
-        ChangeAction(PlayerAction.Move);
+    public void SetDefaultAbility()
+    {
+        ReceiveAbilityCall(player.GetMoveAbility());
     }
 }
