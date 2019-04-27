@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : TileEntity {
-    [SerializeField]
-    private int health;
+public class Enemy : Creature {
 
-    private void Start() {
+    private new void Start() {
         base.Start();
+    }
+
+    public override void TakeDamage(int d) {
+        health -= d;
+        if(health <= 0) {
+            ItemRegistry.GetInstance().CreateRealItem(0, GetPos());
+            GameMaster.UnregisterEnemy(this);
+            Destroy(this.gameObject);
+        }
     }
 }
