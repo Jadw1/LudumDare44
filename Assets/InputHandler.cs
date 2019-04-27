@@ -20,8 +20,6 @@ public class InputHandler : MonoBehaviour {
         TilePos gridPos = tilemap.WorldToCell(mousePos);
 
         OverlayManager overlay = OverlayManager.GetInstance();
-        if(overlay == null)
-            Debug.Log("XD");
 
         if(gridPos != previousHighlight) {
             if(tilemap.HasOverlay(gridPos)) {
