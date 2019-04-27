@@ -43,4 +43,17 @@ public class TilePos {
     public static TilePos operator *(TilePos a, int b) {
         return new TilePos(a.x * b, a.y * b);
     }
+
+    public override bool Equals(object obj)
+    {
+        TilePos pos = obj as TilePos;
+        if (pos == null)
+            return false;
+        return this == pos;
+    }
+
+    public override int GetHashCode()
+    {
+        return (x << 16) ^ y;
+    }
 }
