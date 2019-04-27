@@ -32,8 +32,13 @@ public class InputHandler : MonoBehaviour {
 
             previousHighlight = gridPos;
         }
+    }
 
-        if(Input.GetMouseButtonDown(0) && tilemap.HasOverlay(gridPos)) {
+    public void PerformAction() {
+        TilemapManager tilemap = TilemapManager.GetInstance();
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        TilePos gridPos = tilemap.WorldToCell(mousePos);
+        if(tilemap.HasOverlay(gridPos)) {
             gameMaster.PerformAction(gridPos);
         }
     }
