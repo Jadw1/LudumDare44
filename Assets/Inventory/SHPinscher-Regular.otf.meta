@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 35840d3cc8d168c48baad9248c8460ba
+guid: 1ff3b67848d335b49b9de901e5ec975c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 26
+  fontSize: 16
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Fool
+  fontName: SH Pinscher
   fontNames:
-  - Fool
+  - SH Pinscher
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 2

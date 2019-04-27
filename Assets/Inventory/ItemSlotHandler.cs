@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlotHandler : MonoBehaviour, IDropHandler {
+public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDeselectHandler {
+    
+    [SerializeField]
+    private bool isEquipmentSlot = false;
+    
     private Image icon;
     private int slot;
     
@@ -20,6 +24,10 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler {
         return slot;
     }
 
+    public bool IsEquipmentSlot() {
+        return isEquipmentSlot;
+    }
+
     public void UpdateSlot() {
         ItemData item = InventoryHandler.instance.GetItem(slot);
         if (item != null) {
@@ -31,6 +39,15 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler {
         }
     }
     
+    public void OnSelect(BaseEventData eventData) {
+        InventoryHandler.instance.SelectItem(slot);
+    }
+
+    public void OnDeselect(BaseEventData eventData) {
+        if (InventoryHandler.instance.GetSelection() == slot)
+            InventoryHandler.instance.DeselectItem();
+    }
+
     public void OnDrop(PointerEventData eventData) {
         InventoryHandler inv = InventoryHandler.instance;
         

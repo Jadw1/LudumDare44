@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler {
@@ -14,7 +15,7 @@ public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
             if (eventData.button == PointerEventData.InputButton.Left) {
                 isDragging = true;
                 originalParent = transform.parent;
-                transform.SetParent(transform.parent.parent);
+                transform.SetParent(transform.parent.parent.parent);
                 GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
         }
@@ -32,6 +33,10 @@ public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+
+        if (RectTransformUtility.RectangleContainsScreenPoint((RectTransform) transform, Input.mousePosition)) {
+            transform.parent.GetComponent<Button>().Select();
         }
     }
 }
