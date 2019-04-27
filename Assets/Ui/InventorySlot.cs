@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour {
+    [SerializeField]
+    private ItemType slotType = ItemType.BAUBLE;
+    
     private Button itemButton;
     private Image itemImage;
     private Item item;
@@ -28,12 +31,20 @@ public class InventorySlot : MonoBehaviour {
         return item;
     }
 
-    public void SetItem(Item item) {
+    public bool SetItem(Item item) {
+        if (item == null) {
+            Empty();
+            return false;
+        }
+        if (this.slotType != ItemType.BAUBLE && item.type != this.slotType) return false;
+        
         this.item = item;
 
         itemButton.interactable = true;
         itemImage.enabled = true;
         itemImage.sprite = item.icon;
+
+        return true;
     }
 
     public void Empty() {
