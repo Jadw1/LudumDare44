@@ -21,6 +21,9 @@ public class InventorySlot : MonoBehaviour {
         colorSelected.normalColor = new Color(0.75f, 0.0f, 0.0f, 0.7f);
         colorSelected.highlightedColor = new Color(0.6f, 0.0f, 0.0f, 0.5f);
         colorSelected.pressedColor = new Color(0.5f, 0.0f, 0.0f, 0.4f);
+        if (itemButton == null) {
+            Debug.Log("ERROR");
+        }
     }
     
     public bool IsEmpty() {
