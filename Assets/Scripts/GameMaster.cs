@@ -9,23 +9,28 @@ public enum PlayerAction {
 
 public class GameMaster : MonoBehaviour {
     private Player player;
-    private TileEntity[] enemies;
-
     private IAbility currentAbility;
+
+    private Hashtable enemies;
+    private Hashtable items;
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
-        enemies = new TileEntity[objects.Length];
-
-        for(int i = 0; i < enemies.Length; i++) {
-            enemies[i] = objects[i].GetComponent<TileEntity>();
-        }
-
         SetDefaultAbility();
 
-        ItemRegistry.GetInstance().CreateRealItem(0, new TilePos(-1, -1));
+        enemies = new Hashtable();
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(var enemy in objects) {
+            Enemy e = enemy.GetComponent<Enemy>();
+            enemies.Add(e.GetPos(), e);
+        }
+
+        items = new Hashtable();
+        GameObject[] its = GameObject.FindGameObjectsWithTag("RealItem");
+        foreach(var item in its) {
+            RealItem i = item.GetComponent<RealItem>();
+            items.Add(i.GetPos(), i);
+        }
     }
 
     private TilePos[] ValidateTiles(TilePos[] tiles) {
@@ -47,15 +52,13 @@ public class GameMaster : MonoBehaviour {
         SetDefaultAbility();
     }
 
-    public void ReceiveAbilityCall(IAbility ability)
-    {
+    public void ReceiveAbilityCall(IAbility ability) {
         currentAbility = ability;
         TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles());
         OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
 
-    public void SetDefaultAbility()
-    {
+    public void SetDefaultAbility() {
         ReceiveAbilityCall(player.GetMoveAbility());
     }
 }

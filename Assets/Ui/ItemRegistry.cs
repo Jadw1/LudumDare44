@@ -33,6 +33,6 @@ public class ItemRegistry : MonoBehaviour {
 
         GameObject item = Instantiate(realObjectPrefab);
         item.transform.position = pos.AsVector();
-        item.GetComponent<RealItem>().CreateFromItem(items[id], pos);
+        item.GetComponent<RealItem>().CreateFromItem(items[id]);
     }
 }

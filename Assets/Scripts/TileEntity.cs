@@ -4,38 +4,36 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class TileEntity : MonoBehaviour {
-    private int posX, posY;
+    private TilePos position;
     private bool isMoving = false;
     private Vector3 targetPosition = new Vector3();
     private Vector3 dummy = new Vector3();
 
-    private void Start() {
-        Grid grid = (Grid) FindObjectOfType(typeof(Grid));
-        Vector3Int pos = grid.WorldToCell(this.transform.position);
+    protected void Start() {
+        Grid grid = (Grid)FindObjectOfType(typeof(Grid));
+        Vector3Int pos = grid.WorldToCell(transform.position);
 
-        posX = pos.x;
-        posY = pos.y;
+        position = new TilePos(pos.x, pos.y);
 
         targetPosition = pos;
     }
-    
-    public void Move(TilePos to) {
-        posX = to.x;
-        posY = to.y;
 
-        targetPosition = new Vector3(posX, posY, 0);
+    public void Move(TilePos to) {
+        position = to;
+
+        targetPosition = new Vector3(position.x, position.y, 0);
         isMoving = true;
     }
 
     public TilePos GetPos() {
-        return new TilePos(this.posX, this.posY);
+        return new TilePos(position.x, position.y);
     }
 
     private void Update() {
-        if (isMoving) {
+        if(isMoving) {
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref dummy, 0.05f);
-            
-            if (Mathf.Abs((transform.position - targetPosition).magnitude) <= 0.01f) {
+
+            if(Mathf.Abs((transform.position - targetPosition).magnitude) <= 0.01f) {
                 isMoving = false;
                 transform.position = targetPosition;
             }

@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class RealItem : MonoBehaviour {
+public class RealItem : TileEntity {
     [SerializeField]
     private int ID;
 
-    private TilePos position;
-
-    public void CreateFromItem(Item item, TilePos pos) {
-        position = pos;
+    public void CreateFromItem(Item item) {
+        base.Start();
         ID = item.ID;
         transform.GetComponentInChildren<SpriteRenderer>().sprite = item.icon;
     }

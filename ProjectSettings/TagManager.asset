@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - GameMaster
+  - RealItem
   layers:
   - Default
   - TransparentFX

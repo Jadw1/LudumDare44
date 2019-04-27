@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : TileEntity {
     [SerializeField]
     private int health;
 
-
+    private void Start() {
+        base.Start();
+    }
 }
