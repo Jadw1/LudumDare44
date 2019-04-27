@@ -2492,7 +2492,6 @@ GameObject:
   - component: {fileID: 460529360}
   - component: {fileID: 460529362}
   - component: {fileID: 460529361}
-  - component: {fileID: 460529363}
   - component: {fileID: 460529364}
   m_Layer: 5
   m_Name: Inventory
@@ -2562,27 +2561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460529359}
   m_CullTransparentMesh: 0
---- !u!114 &460529363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460529359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b094010187a6916459af5e6ceefdc439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - ID: 0
-    icon: {fileID: -6050851277337184390, guid: aa4e100c476f29542b7cdd6bc1cd57c9, type: 3}
-    name: Princess
-    description: Tasty, is food.
-    price: 666
-    type: 1
-  realObjectPrefab: {fileID: 2995464201340905904, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-    type: 3}
 --- !u!114 &460529364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4970,6 +4948,7 @@ GameObject:
   - component: {fileID: 1159463781}
   - component: {fileID: 1159463780}
   - component: {fileID: 1159463779}
+  - component: {fileID: 1159463778}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: GameMaster
@@ -5058,6 +5037,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1159463778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159463773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b094010187a6916459af5e6ceefdc439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - ID: 0
+    icon: {fileID: 2808185447293992086, guid: 5e446e91bff77eb438b18a3584f6c220, type: 3}
+    name: Bronze Helmet
+    description: Made of bronze.
+    buyPrice: 0
+    sellPrice: 0
+    type: 4
+  - ID: 1
+    icon: {fileID: 340999481055245665, guid: 5e446e91bff77eb438b18a3584f6c220, type: 3}
+    name: Bronze Ring
+    description: Made of bronze.
+    buyPrice: 0
+    sellPrice: 0
+    type: 5
+  - ID: 2
+    icon: {fileID: 6835124139221763565, guid: 5e446e91bff77eb438b18a3584f6c220, type: 3}
+    name: Wooden Shield
+    description: Made of wood.
+    buyPrice: 0
+    sellPrice: 0
+    type: 2
+  - ID: 3
+    icon: {fileID: -4196405969983660786, guid: 5e446e91bff77eb438b18a3584f6c220, type: 3}
+    name: Bronze Sword
+    description: Made of bronze.
+    buyPrice: 0
+    sellPrice: 0
+    type: 1
+  - ID: 4
+    icon: {fileID: 21300000, guid: 0b05a5f80740f6c47a8336ec48f861f5, type: 3}
+    name: Iron Chestplate
+    description: Made of iron.
+    buyPrice: 0
+    sellPrice: 0
+    type: 3
+  - ID: 5
+    icon: {fileID: 1908761935265874229, guid: 5e446e91bff77eb438b18a3584f6c220, type: 3}
+    name: Old Tome
+    description: It's useless.
+    buyPrice: 0
+    sellPrice: 0
+    type: 0
+  realObjectPrefab: {fileID: 2995464201340905904, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
+    type: 3}
 --- !u!114 &1159463779
 MonoBehaviour:
   m_ObjectHideFlags: 0
