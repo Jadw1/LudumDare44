@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class TileEntity : MonoBehaviour {
+
     private TilePos position;
     private bool isMoving = false;
+    private bool doRecall = false;
     private Vector3 targetPosition = new Vector3();
+    private Vector3 knockback = new Vector3(0, 0, 0);
     private Vector3 dummy = new Vector3();
 
     protected void Start() {
@@ -18,10 +21,18 @@ public class TileEntity : MonoBehaviour {
         targetPosition = pos;
     }
 
-    public void Move(TilePos to) {
-        position = to;
+    public void Move(TilePos to, TileEntity entity) {
+        Enemy enemy = entity as Enemy;
+        if(enemy != null) {
+            knockback = (to - position).AsNormalizedVector();
+            doRecall = true;
+        }
 
-        targetPosition = new Vector3(position.x, position.y, 0);
+
+        TilePos off = (doRecall) ? (to - position).AsUnitTilePos() : new TilePos(0, 0);
+        position = to  - off;
+
+        targetPosition = new Vector3(position.x, position.y, 0) + (0.5f * knockback);
         isMoving = true;
     }
 
@@ -37,6 +48,12 @@ public class TileEntity : MonoBehaviour {
                 isMoving = false;
                 transform.position = targetPosition;
             }
+        }
+        else if(doRecall) {
+            targetPosition -= 0.5f * knockback;
+            doRecall = false;
+            isMoving = true;
+            knockback = new Vector3(0, 0, 0);
         }
     }
 }

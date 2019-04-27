@@ -48,7 +48,7 @@ public class GameMaster : MonoBehaviour {
     }
 
     public void PerformAction(TilePos pos) {
-        currentAbility.Execute(pos);
+        currentAbility.Execute(pos, GetTileEntity(pos));
         SetDefaultAbility();
     }
 
@@ -60,5 +60,14 @@ public class GameMaster : MonoBehaviour {
 
     public void SetDefaultAbility() {
         ReceiveAbilityCall(player.GetMoveAbility());
+    }
+
+    public TileEntity GetTileEntity(TilePos pos) {
+        if(enemies.ContainsKey(pos))
+            return enemies[pos] as Enemy;
+        else if (items.ContainsKey(pos))
+            return items[pos] as RealItem;
+        else
+            return null;
     }
 }

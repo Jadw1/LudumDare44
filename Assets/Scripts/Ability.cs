@@ -8,6 +8,6 @@ public abstract class Ability : IAbility {
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().ReceiveAbilityCall(this);
     }
 
-    public abstract void Execute(TilePos pos);
+    public abstract void Execute(TilePos pos, TileEntity entity);
     public abstract TilePos[] GetValidTiles();
 }

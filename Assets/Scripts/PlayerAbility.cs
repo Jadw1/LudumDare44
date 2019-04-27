@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAbility : Ability {
-    private Action<TilePos> move;
+    private Action<TilePos, TileEntity> move;
 
-    public PlayerAbility(Action<TilePos> moveFunction) {
+    public PlayerAbility(Action<TilePos, TileEntity> moveFunction) {
         move = moveFunction;
     }
 
-    public override void Execute(TilePos pos) {
-        move(pos);
+    public override void Execute(TilePos pos, TileEntity entity) {
+        move(pos, entity);
     }
 
     public override TilePos[] GetValidTiles() {
