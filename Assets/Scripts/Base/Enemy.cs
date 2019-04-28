@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Enemy : Creature {
+﻿public class Enemy : Creature {
 
     private Pathfinding pathFinder;
 
     private new void Start() {
         base.Start();
-        pathFinder = new Pathfinding();
+        pathFinder = new Pathfinding(GetPossibleMoves);
+    }
+
+    private TilePos[] GetPossibleMoves(TilePos move) {
+        return AreaGenerator.GenerateSphericalArea(move, 1);
     }
 
     public override void TakeDamage(int d) {

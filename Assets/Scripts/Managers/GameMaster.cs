@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -33,7 +34,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
         turnCounter = 0;
     }
 
-    public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
+    /*public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
         TilemapManager tilemap = TilemapManager.instance;
         List<TilePos> possibilities = new List<TilePos>();
 
@@ -45,6 +46,16 @@ public class GameMaster : GenericSingleton<GameMaster> {
 
                 possibilities.Add(tile);
             }
+        }
+
+        return possibilities.ToArray();
+    }*/
+
+    public TilePos[] AvoidEnemies(TilePos[] moves) {
+        List<TilePos> possibilities = new List<TilePos>();
+        foreach(var move in moves) {
+            if(!enemies.ContainsKey(move))
+                possibilities.Add(move);
         }
 
         return possibilities.ToArray();
@@ -62,7 +73,6 @@ public class GameMaster : GenericSingleton<GameMaster> {
 
     public void ReceiveAbilityCall(Ability ability) {
         currentAbility = ability;
-        //TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles(), player.GetPos());
         TilePos[] tiles = currentAbility.GetValidTiles(player.GetPos());
         OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
