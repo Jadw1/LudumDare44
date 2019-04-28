@@ -6,4 +6,5 @@ public class ItemData {
     public string name;
     public string description;
     public int price;
+    public Ability ability = new AbilityShieldBash();
 }

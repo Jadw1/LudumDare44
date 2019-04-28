@@ -35,8 +35,4 @@ public class PlayerAbility : Ability {
 
         return possibilities.ToArray();
     }
-
-    public override TilePos GetRelativeTile() {
-        return playerPosition();
-    }
 }
