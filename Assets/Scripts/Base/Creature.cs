@@ -6,9 +6,9 @@ public abstract class Creature : TileEntity {
     [SerializeField]
     protected int damage;
     [SerializeField]
-    protected int health;
+    public int health { protected set; get; }
     [SerializeField]
-    protected int maxHealth;
+    public int maxHealth { protected set; get; }
 
     protected new void Start() {
         base.Start();

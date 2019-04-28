@@ -15,6 +15,7 @@ public class PlayerAbility : Ability {
 
     public override void Execute(TilePos pos, TileEntity entity) {
         move(pos, entity);
+        AudioHelper.instance.Play("click");
     }
 
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
