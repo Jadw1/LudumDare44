@@ -19,6 +19,11 @@ public class ResourceHelper {
         table.Add("audioclip_rollover", AssetDatabase.LoadAssetAtPath("Assets/Kenney/UI Sounds/rollover1.wav", typeof(AudioClip)));
         table.Add("audioclip_switch", AssetDatabase.LoadAssetAtPath("Assets/Kenney/UI Sounds/switch24.wav", typeof(AudioClip)));
         table.Add("audioclip_switch_2", AssetDatabase.LoadAssetAtPath("Assets/Kenney/UI Sounds/switch36.wav", typeof(AudioClip)));
+
+        table.Add("audioclip_bow", AssetDatabase.LoadAssetAtPath("Assets/Sounds/Battle Sounds/Bow.wav", typeof(AudioClip)));
+        table.Add("audioclip_swish_1", AssetDatabase.LoadAssetAtPath("Assets/Sounds/Battle Sounds/swish_2.wav", typeof(AudioClip)));
+        table.Add("audioclip_swish_2", AssetDatabase.LoadAssetAtPath("Assets/Sounds/Battle Sounds/swish_3.wav", typeof(AudioClip)));
+        table.Add("audioclip_swish_3", AssetDatabase.LoadAssetAtPath("Assets/Sounds/Battle Sounds/swish_4.wav", typeof(AudioClip)));
         #endregion
 
         return table;
