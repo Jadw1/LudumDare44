@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GenericSingleton<T> : MonoBehaviour where T : GenericSingleton<T> {
-    protected static T _instance;
-    public static T instance => _instance;
+    public static T instance { get; private set; }
 
     protected void Awake() {
-        _instance = (T)this;
+        instance = (T)this;
     }
 }

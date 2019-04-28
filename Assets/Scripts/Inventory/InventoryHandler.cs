@@ -27,10 +27,6 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
     private InfoPanelHandler infoPanel;
     private int selection;
 
-    private void Awake() {
-        _instance = this;
-    }
-
     private void Start() {
         slots = GameObject.FindObjectsOfType<ItemSlotHandler>();
         items = new ItemData[slots.Length];

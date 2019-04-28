@@ -4,11 +4,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class TilemapManager : GenericSingleton<TilemapManager> {
-    protected override void AssignInstance()
-    {
-        _instance = this;
-    }
-    
     private Tilemap top;
     private Tilemap middle;
     private Tilemap bottom;

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VisualEffectsHelper : GenericSingleton<VisualEffectsHelper> {
-    protected override void AssignInstance() {
-        _instance = this;
-    }
-
     [SerializeField]
     private GameObject sparks;
 
