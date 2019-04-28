@@ -12,6 +12,15 @@ public class GameMaster : GenericSingleton<GameMaster> {
     private static Hashtable items;
 
     public int turnCounter { get; private set; }
+    public int cooldown { get; private set; }
+
+    #region EVENTS
+    public delegate void OnTurnBeginEvent(int turnCounter);
+    public static event OnTurnBeginEvent OnTurnBegin;
+
+    public delegate void OnTurnEndEvent(int turnCounter);
+    public static event OnTurnEndEvent OnTurnEnd;
+    #endregion
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -66,10 +75,24 @@ public class GameMaster : GenericSingleton<GameMaster> {
     }
 
     public void PerformAction(TilePos pos) {
-        currentAbility.Execute(pos, GetTileEntity(pos));
+        if (!currentAbility.Execute(pos, GetTileEntity(pos))) {
+            return;
+        }
+        
+        if (cooldown == 0) {
+            cooldown = currentAbility.GetCooldown();
+        } else {
+            cooldown--;
+        }
+
         SetDefaultAbility();
+
+        OnTurnEnd?.Invoke(turnCounter);
+
         EnemiesTurn();
         turnCounter++;
+
+        OnTurnBegin?.Invoke(turnCounter);
     }
 
     public void ReceiveAbilityCall(Ability ability) {
@@ -114,6 +137,8 @@ public class GameMaster : GenericSingleton<GameMaster> {
 
     #region PRIVATE_METHODS
     private void EnemiesTurn() {
+        
+
         List<Enemy> ens = new List<Enemy>();
 
         foreach(DictionaryEntry entry in enemies) {

@@ -10,11 +10,26 @@ public class AbilityButtonHandler : MonoBehaviour {
     private Ability ability;
     private Image icon;
     private Sprite emptyIcon;
+    private Button iconButton;
     private TextMeshProUGUI cooldownText;
-    private int unlockAt;
+
+    private void OnTurnEnd(int turn) {
+        int cooldown = GameMaster.instance.cooldown;
+
+        if (cooldown == 0) {
+            iconButton.interactable = true;
+            cooldownText.text = "";
+        } else {
+            iconButton.interactable = false;
+            cooldownText.text = "" + cooldown;
+        }
+    }
 
     private void Start() {
+        GameMaster.OnTurnEnd += OnTurnEnd;
+
         icon = transform.GetComponent<Image>();
+        iconButton = transform.GetComponent<Button>();
         emptyIcon = icon.sprite;
 
         cooldownText = transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -37,12 +52,6 @@ public class AbilityButtonHandler : MonoBehaviour {
     }
 
     public void Use() {
-        /*
-        if (unlockAt != -1) {
-            AudioHelper.instance.Play("handle_small_leather");
-            return;
-        }*/
-
         if (ability != null) {
             ability.CallGameMaster();
             AudioHelper.instance.Play("switch2");

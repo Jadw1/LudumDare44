@@ -27,6 +27,12 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
     private InfoPanelHandler infoPanel;
     private int selection;
 
+    public delegate void EquipmentChangeEvent(int slot, SlotType type, ItemData old, ItemData item);
+    public static event EquipmentChangeEvent OnEquipmentChange;
+
+    public delegate void SelectionChangeEvent(int slot, SlotType type, ItemData item);
+    public static event SelectionChangeEvent OnSelectionChange;
+
     private void Start() {
         slots = GameObject.FindObjectsOfType<ItemSlotHandler>();
         items = new ItemData[slots.Length];
@@ -48,12 +54,12 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
 
     public void SelectItem(int slot) {
         selection = slot;
-        infoPanel.SetItem(items[slot]);
+        OnSelectionChange?.Invoke(slot, slots[slot].GetSlotType(), items[slot]);
     }
 
     public void DeselectItem() {
         selection = -1;
-        infoPanel.Clear();
+        OnSelectionChange?.Invoke(-1, SlotType.GENERAL, null);
     }
 
     public int GetSelection() {
@@ -78,12 +84,16 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
         ItemData old = items[slot];
         items[slot] = item;
         slots[slot].UpdateSlot();
+
+        if (slots[slot].GetSlotType() != SlotType.GENERAL)
+            OnEquipmentChange?.Invoke(slot, slots[slot].GetSlotType(), old, item);
+
         return old;
     }
 
     public bool AddItem(ItemData item) {
         for(int i = 0; i < items.Length; i++) {
-            if(items[i] == null && !slots[i].IsEquipmentSlot()) {
+            if(items[i] == null && slots[i].GetSlotType() == SlotType.GENERAL) {
                 SetItem(i, item);
                 return true;
             }

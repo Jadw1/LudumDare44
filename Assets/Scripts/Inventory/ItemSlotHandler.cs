@@ -4,10 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum SlotType {
+    GENERAL,
+    EQ1,
+    EQ2,
+    EQ3,
+    EQ4,
+    EQ5,
+}
+
+
 public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDeselectHandler {
     
     [SerializeField]
-    private bool isEquipmentSlot = false;
+    private SlotType slotType;
     
     private Image icon;
     private int slot;
@@ -24,8 +34,8 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
         return slot;
     }
 
-    public bool IsEquipmentSlot() {
-        return isEquipmentSlot;
+    public SlotType GetSlotType() {
+        return slotType;
     }
 
     public virtual void UpdateSlot() {
@@ -58,7 +68,7 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
 
         AudioHelper.instance.Play("rollover");
 
-        if (this.isEquipmentSlot)
+        if (slotType != SlotType.GENERAL)
           AudioHelper.instance.Play("switch2");
 
         UpdateSlot();

@@ -13,8 +13,13 @@ public class PlayerAbility : Ability {
         playerPosition = position;
     }
 
-    public override void Execute(TilePos pos, TileEntity entity) {
+    public override int GetCooldown() {
+        return 0;
+    }
+
+    public override bool Execute(TilePos pos, TileEntity entity) {
         move(pos, entity);
+        return true;
     }
 
     public override TilePos[] GetValidTiles(TilePos relativeTo) {

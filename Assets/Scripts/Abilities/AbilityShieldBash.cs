@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 public class AbilityShieldBash : Ability {
-    public override void Execute(TilePos pos, TileEntity entity) {
+    public override bool Execute(TilePos pos, TileEntity entity) {
         Player player = GameMaster.instance.GetPlayer();
         player.Move(pos, entity);
 
@@ -16,6 +16,8 @@ public class AbilityShieldBash : Ability {
             VisualEffectsHelper.instance.CreateSparks( plyPos + (targetPos - plyPos) / 2.0f);
             AudioHelper.instance.Play("swish1");
         }
+
+        return true;
     }
 
     public override Sprite GetIcon() {
@@ -23,13 +25,6 @@ public class AbilityShieldBash : Ability {
     }
     
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
-        /*List<TilePos> possibilities = new List<TilePos>();
-        for(int x = -4; x < 5; x++) {
-            if (x == 0) continue;
-            possibilities.Add(new TilePos(x, 0) + relativeTo);
-            possibilities.Add(new TilePos(0, x) + relativeTo);
-        }*/
-
         return AreaGenerator.Get4DirectionMove(relativeTo, 5);
     }
 }

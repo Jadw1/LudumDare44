@@ -730,7 +730,7 @@ RectTransform:
   - {fileID: 857023809}
   - {fileID: 1570955997}
   m_Father: {fileID: 1247040126}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &249841765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,7 +3462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &582874145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3733,38 +3733,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8611979225128981797, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: item.ability
-      value: shield_bash
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611979225128981797, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: item.name
-      value: Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611979225128981797, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: item.description
-      value: Protects you and allows you to charge with your life on the line.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611979225128981797, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: item.price
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611979225128981797, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: item.icon
-      value: 
-      objectReference: {fileID: 4251514973958229395, guid: 9ffc69242c22ad448b5fb7ac642502b3,
-        type: 3}
-    - target: {fileID: 7050574752992846910, guid: 00cc1b4424ceb9a459f92f51ca8f0c71,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 4251514973958229395, guid: 9ffc69242c22ad448b5fb7ac642502b3,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00cc1b4424ceb9a459f92f51ca8f0c71, type: 3}
 --- !u!1 &623671509
@@ -3799,7 +3767,7 @@ RectTransform:
   - {fileID: 1367994093}
   - {fileID: 1551271415}
   m_Father: {fileID: 1247040126}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4170,11 +4138,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 915082346}
-  - {fileID: 1803448106}
-  - {fileID: 1815035562}
-  - {fileID: 736884603}
   - {fileID: 1854581316}
+  - {fileID: 736884603}
+  - {fileID: 1815035562}
+  - {fileID: 1803448106}
+  - {fileID: 915082346}
   m_Father: {fileID: 1750816111}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4296,7 +4264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &724401719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4412,7 +4380,7 @@ RectTransform:
   m_Children:
   - {fileID: 1247931541}
   m_Father: {fileID: 687885100}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4473,11 +4441,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 736884602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f50f4f21408154da3494c483d06a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 1
-  abilityHandler: {fileID: 1367994094}
+  slotType: 2
 --- !u!114 &736884606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4942,7 +4909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &857072063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5137,7 +5104,7 @@ RectTransform:
   m_Children:
   - {fileID: 1975591744}
   m_Father: {fileID: 687885100}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5198,11 +5165,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 915082345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f50f4f21408154da3494c483d06a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 1
-  abilityHandler: {fileID: 857023813}
+  slotType: 5
 --- !u!114 &915082349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6182,7 +6148,7 @@ RectTransform:
   - {fileID: 1040068168}
   - {fileID: 1044220856}
   m_Father: {fileID: 1247040126}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6315,7 +6281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1107231340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6450,7 +6416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1121898135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7618,7 +7584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1233239249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7835,6 +7801,7 @@ GameObject:
   - component: {fileID: 1247040128}
   - component: {fileID: 1247040127}
   - component: {fileID: 1247040129}
+  - component: {fileID: 1247040130}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -7853,11 +7820,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 170706626}
-  - {fileID: 1393532610}
-  - {fileID: 1773897192}
-  - {fileID: 623671510}
   - {fileID: 1073057508}
+  - {fileID: 623671510}
+  - {fileID: 1773897192}
+  - {fileID: 1393532610}
+  - {fileID: 170706626}
   m_Father: {fileID: 1081422030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7928,6 +7895,18 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &1247040130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247040125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77201e8035899e4aad21c428e8f77c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1247931540
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,7 +8156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1260485247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8349,7 +8328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1275122846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8809,7 +8788,7 @@ RectTransform:
   - {fileID: 1962629372}
   - {fileID: 1128289500}
   m_Father: {fileID: 1247040126}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9272,7 +9251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1513985721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9483,7 +9462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1526802617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10187,7 +10166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1576164867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10369,7 +10348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1623384785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11533,7 +11512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1725205192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12023,7 +12002,7 @@ RectTransform:
   m_Children:
   - {fileID: 1941180207}
   m_Father: {fileID: 687885100}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12084,11 +12063,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803448105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f50f4f21408154da3494c483d06a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 1
-  abilityHandler: {fileID: 1962629373}
+  slotType: 4
 --- !u!114 &1803448109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12220,11 +12198,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1815035561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f50f4f21408154da3494c483d06a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 1
-  abilityHandler: {fileID: 537430461}
+  slotType: 3
 --- !u!114 &1815035565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12314,7 +12291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1824926800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12564,7 +12541,7 @@ RectTransform:
   m_Children:
   - {fileID: 116772129}
   m_Father: {fileID: 687885100}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12625,11 +12602,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854581315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f50f4f21408154da3494c483d06a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 1
-  abilityHandler: {fileID: 1040068164}
+  slotType: 1
 --- !u!114 &1854581319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12841,7 +12817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &1926455942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14746,7 +14722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &2054631580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15084,7 +15060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d11cb2e7c63044cbb50acab157cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipmentSlot: 0
+  slotType: 0
 --- !u!114 &2095965239
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,6 +17,6 @@ public abstract class Ability {
         return 1;
     }
 
-    public abstract void Execute(TilePos pos, TileEntity entity);
+    public abstract bool Execute(TilePos pos, TileEntity entity);
     public abstract TilePos[] GetValidTiles(TilePos relativeTo);
 }

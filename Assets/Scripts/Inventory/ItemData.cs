@@ -6,13 +6,13 @@ public class ItemData {
     public string name;
     public string description;
     public int price;
-    public string ability;
+    public Ability ability;
 
     public ItemData() {
-
+        
     }
 
-    public ItemData(Sprite icon, string name, string description, int price, string ability) {
+    public ItemData(Sprite icon, string name, string description, int price, Ability ability) {
         this.icon = icon;
         this.name = name;
         this.description = description;

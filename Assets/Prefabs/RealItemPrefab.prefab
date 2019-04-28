@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    icon: {fileID: -2113889980383724603, guid: 9ffc69242c22ad448b5fb7ac642502b3, type: 3}
-    name: Apple
-    description: Can be eaten.
-    price: 2
+    icon: {fileID: 4251514973958229395, guid: 9ffc69242c22ad448b5fb7ac642502b3, type: 3}
+    name: Shield
+    description: Protects you and allows you to charge with your life on the line.
+    price: 7
+  defaultAbility: 0
 --- !u!1 &6903410330937829950
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +118,7 @@ SpriteRenderer:
   m_SortingLayerID: -1703621701
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2113889980383724603, guid: 9ffc69242c22ad448b5fb7ac642502b3,
+  m_Sprite: {fileID: 4251514973958229395, guid: 9ffc69242c22ad448b5fb7ac642502b3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
