@@ -33,18 +33,25 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    private TilePos[] ValidateTiles(TilePos[] tiles) {
+    private TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
         TilemapManager tilemap = TilemapManager.GetInstance();
         List<TilePos> possibilities = new List<TilePos>();
 
         foreach(var pos in tiles) {
-            var tile = player.GetPos() + pos;
-            if(tilemap.IsEmpty(tile)) {
+            var tile = reletiveTo + pos;
+            if(tilemap.IsValidSurface(tile)) {
+                if(ignoreEnemies && IsEnemyThere(tile))
+                    continue;
+
                 possibilities.Add(tile);
             }
         }
 
         return possibilities.ToArray();
+    }
+
+    public bool IsEnemyThere(TilePos pos) {
+        return enemies.ContainsKey(pos);
     }
 
     public void PerformAction(TilePos pos) {
@@ -54,7 +61,7 @@ public class GameMaster : MonoBehaviour {
 
     public void ReceiveAbilityCall(IAbility ability) {
         currentAbility = ability;
-        TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles());
+        TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles(), currentAbility.GetRelativeTile());
         OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
 
@@ -65,7 +72,7 @@ public class GameMaster : MonoBehaviour {
     public static TileEntity GetTileEntity(TilePos pos) {
         if(enemies.ContainsKey(pos))
             return enemies[pos] as Enemy;
-        else if (items.ContainsKey(pos))
+        else if(items.ContainsKey(pos))
             return items[pos] as RealItem;
         else
             return null;

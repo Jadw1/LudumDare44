@@ -10,4 +10,5 @@ public abstract class Ability : IAbility {
 
     public abstract void Execute(TilePos pos, TileEntity entity);
     public abstract TilePos[] GetValidTiles();
+    public abstract TilePos GetRelativeTile();
 }

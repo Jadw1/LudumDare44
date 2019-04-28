@@ -8,7 +8,7 @@ public class Player : Creature {
 
     private void Start() {
         base.Start();
-        moveAbility = new PlayerAbility(Move);
+        moveAbility = new PlayerAbility(Move, GetPos);
     }
 
     public new void Move(TilePos to, TileEntity entity) {

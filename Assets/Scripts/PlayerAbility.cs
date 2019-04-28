@@ -6,8 +6,11 @@ using UnityEngine;
 public class PlayerAbility : Ability {
     private Action<TilePos, TileEntity> move;
 
-    public PlayerAbility(Action<TilePos, TileEntity> moveFunction) {
+    private Func<TilePos> playerPosition;
+
+    public PlayerAbility(Action<TilePos, TileEntity> moveFunction, Func<TilePos> position) {
         move = moveFunction;
+        playerPosition = position;
     }
 
     public override void Execute(TilePos pos, TileEntity entity) {
@@ -31,5 +34,9 @@ public class PlayerAbility : Ability {
         possibilities.Add(new TilePos(-2, 0));
 
         return possibilities.ToArray();
+    }
+
+    public override TilePos GetRelativeTile() {
+        return playerPosition();
     }
 }

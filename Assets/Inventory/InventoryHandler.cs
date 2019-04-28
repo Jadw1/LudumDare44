@@ -12,7 +12,7 @@ public class InventoryHandler : MonoBehaviour {
     public bool CreateRealItem(TilePos pos, ItemData itemData) {
         TilemapManager tilemap = TilemapManager.GetInstance();
         
-        if (!tilemap.IsEmpty(pos) || (GameMaster.GetTileEntity(pos) as RealItem) != null) return false;
+        if (!tilemap.IsValidSurface(pos) || (GameMaster.GetTileEntity(pos) as RealItem) != null) return false;
 
         GameObject item = Instantiate(realObjectPrefab);
         item.transform.position = pos.AsVector();

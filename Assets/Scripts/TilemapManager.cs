@@ -32,7 +32,7 @@ public class TilemapManager : MonoBehaviour {
         overlay = grid.transform.Find("Overlay").GetComponent<Tilemap>();
     }
 
-    public bool IsEmpty(TilePos pos) {
+    public bool IsValidSurface(TilePos pos) {
         return bottom.HasTile(pos.AsVector());
     }
 
