@@ -31,6 +31,10 @@ public class AbilityButtonHandler : MonoBehaviour {
     public void Use() {
         if (ability != null) {
             ability.CallGameMaster();
+            AudioHelper.instance.Play("switch_2");
+        }
+        else {
+            AudioHelper.instance.Play("switch");
         }
     }
 }
