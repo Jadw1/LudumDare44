@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,13 @@ public class AbilityButtonHandler : MonoBehaviour {
     private Ability ability;
     private Image icon;
     private Sprite emptyIcon;
-    private Text cooldownText;
+    private TextMeshProUGUI cooldownText;
 
     private void Start() {
         icon = transform.GetComponent<Image>();
         emptyIcon = icon.sprite;
 
-        cooldownText = transform.parent.GetChild(1).GetComponent<Text>();
+        cooldownText = transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         cooldownText.text = "";
 
         UpdateAbility(null);
