@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryHandler : MonoBehaviour {
-    public static InventoryHandler instance;
+public class InventoryHandler : GenericSingleton<InventoryHandler> {
+    protected override void AssignInstance() {
+        _instance = this;
+    }
 
     #region ITEM AS TILE ENTITY CREATION
     [SerializeField]
     private GameObject realObjectPrefab;
-    
+
     public bool CreateRealItem(TilePos pos, ItemData itemData) {
         TilemapManager tilemap = TilemapManager.GetInstance();
-        
-        if (!tilemap.IsValidSurface(pos) || (GameMaster.GetTileEntity(pos) as RealItem) != null) return false;
+
+        if(!tilemap.IsValidSurface(pos) || (GameMaster.GetTileEntity(pos) as RealItem) != null)
+            return false;
 
         GameObject item = Instantiate(realObjectPrefab);
         item.transform.position = pos.AsVector();
@@ -28,13 +31,15 @@ public class InventoryHandler : MonoBehaviour {
     private InfoPanelHandler infoPanel;
     private int selection;
 
-    private void Start() {
-        instance = this;
+    private void Awake() {
+        _instance = this;
+    }
 
+    private void Start() {
         slots = GameObject.FindObjectsOfType<ItemSlotHandler>();
         items = new ItemData[slots.Length];
 
-        for (int i = 0; i < slots.Length; i++) {
+        for(int i = 0; i < slots.Length; i++) {
             slots[i].SetSlot(i);
         }
 
@@ -44,7 +49,7 @@ public class InventoryHandler : MonoBehaviour {
     }
 
     public void RebuildInventory() {
-        foreach (ItemSlotHandler slot in slots) {
+        foreach(ItemSlotHandler slot in slots) {
             slot.UpdateSlot();
         }
     }
@@ -64,17 +69,20 @@ public class InventoryHandler : MonoBehaviour {
     }
 
     public ItemData GetSelectedItem() {
-        if (selection == -1) return null;
+        if(selection == -1)
+            return null;
         return items[selection];
     }
 
     public ItemData GetItem(int slot) {
-        if (slot < 0 || slot >= items.Length) return null;
+        if(slot < 0 || slot >= items.Length)
+            return null;
         return items[slot];
     }
 
     public ItemData SetItem(int slot, ItemData item) {
-        if (slot < 0 || slot >= items.Length) return null;
+        if(slot < 0 || slot >= items.Length)
+            return null;
         ItemData old = items[slot];
         items[slot] = item;
         slots[slot].UpdateSlot();
@@ -82,8 +90,8 @@ public class InventoryHandler : MonoBehaviour {
     }
 
     public bool AddItem(ItemData item) {
-        for (int i = 0; i < items.Length; i++) {
-            if (items[i] == null && !slots[i].IsEquipmentSlot()) {
+        for(int i = 0; i < items.Length; i++) {
+            if(items[i] == null && !slots[i].IsEquipmentSlot()) {
                 SetItem(i, item);
                 return true;
             }

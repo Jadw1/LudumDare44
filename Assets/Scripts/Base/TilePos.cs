@@ -50,6 +50,10 @@ public class TilePos {
             return new TilePos(0, 0);
     }
 
+    public static int CalculateDistance(TilePos a, TilePos b) {
+        return Math.Abs(a.x - b.x) + Math.Abs(a.y - b.y);
+    }
+
     public static TilePos operator +(TilePos a, TilePos b) {
         return new TilePos(a.x + b.x, a.y + b.y);
     }

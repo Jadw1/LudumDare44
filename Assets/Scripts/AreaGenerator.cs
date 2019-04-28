@@ -23,7 +23,7 @@ public class AreaGenerator {
             possibilities.Add(tile);
             hashtable.Add(tile, true);
 
-            if(CalculateDistance(tile, center) < radius) {
+            if(TilePos.CalculateDistance(tile, center) < radius) {
                 TilePos[] moves = Get4DirectionMove(tile);
                 foreach(var move in moves) {
                     stack.Push(move);
@@ -43,9 +43,5 @@ public class AreaGenerator {
         moves[3] = new TilePos(0, -1) + relativeTo;
 
         return moves;
-    }
-
-    private static int CalculateDistance(TilePos a, TilePos b) {
-        return Math.Abs(a.x - b.x) + Math.Abs(a.y - b.y);
     }
 }

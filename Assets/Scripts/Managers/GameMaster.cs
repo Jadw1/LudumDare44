@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum PlayerAction {
-    Move, Melee, Range
-}
+public class GameMaster : GenericSingleton<GameMaster> {
 
-public class GameMaster : MonoBehaviour {
+    protected override void AssignInstance()
+    {
+        _instance = this;
+    }
+
     private static Player player;
     private Ability currentAbility;
 
     private static Hashtable enemies;
     private static Hashtable items;
+
+    private int turnCounter;
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -31,6 +35,8 @@ public class GameMaster : MonoBehaviour {
             RealItem i = item.GetComponent<RealItem>();
             items.Add(i.GetPos(), i);
         }
+
+        turnCounter = 0;
     }
 
     public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
@@ -57,6 +63,7 @@ public class GameMaster : MonoBehaviour {
     public void PerformAction(TilePos pos) {
         currentAbility.Execute(pos, GetTileEntity(pos));
         SetDefaultAbility();
+        EnemiesTurn();
     }
 
     public void ReceiveAbilityCall(Ability ability) {
@@ -98,4 +105,26 @@ public class GameMaster : MonoBehaviour {
     public static void UnregisterEnemy(Enemy enemy) {
         enemies.Remove(enemy.GetPos());
     }
+
+
+    #region PRIVATE_METHODS
+    private void EnemiesTurn() {
+        List<Enemy> ens = new List<Enemy>();
+
+        foreach(DictionaryEntry entry in enemies) {
+            Enemy enemy = entry.Value as Enemy;
+            if(enemy == null)
+                continue;
+            ens.Add(enemy);
+        }
+
+        foreach(var enemy in ens) {
+            enemy.PerformTurn();
+
+        }
+    }
+
+
+
+    #endregion
 }

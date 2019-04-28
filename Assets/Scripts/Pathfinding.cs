@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Priority_Queue;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class Pathfinding {
     private class Node {
         public Node(TilePos pos, TilePos start, TilePos target, TilePos p) {
             position = pos;
-            toTarget = Pathfinding.CalculateDistance(position, target);
-            fromStart = Pathfinding.CalculateDistance(position, start);
+            toTarget = TilePos.CalculateDistance(position, target);
+            fromStart = TilePos.CalculateDistance(position, start);
             totalDistance = toTarget + fromStart;
             prev = p;
             visited = false;
@@ -24,8 +25,13 @@ public class Pathfinding {
         public bool visited;
     };
 
+    private TilePos currentTarget;
     private Hashtable hashtable;
     private SimplePriorityQueue<TilePos> queue;
+    private Stack<TilePos> path;
+
+    private int maxDifference = 3;
+    //private int 
 
     private GameMaster gameMaster;
 
@@ -33,9 +39,27 @@ public class Pathfinding {
         hashtable = new Hashtable();
         queue = new SimplePriorityQueue<TilePos>();
         gameMaster = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+        path = null;
+    }
+
+    public TilePos GetNextMove(TilePos start, TilePos target) {
+        if(path == null || path.Count == 0 || TilePos.CalculateDistance(target, currentTarget) > maxDifference) {
+            FindPath(start, target);
+        }
+
+        TilePos move = path.Pop();
+        if(gameMaster.IsEnemyThere(move)) {
+            FindPath(start, target);
+            move = path.Pop();
+        }
+
+        return move;
     }
 
     public void FindPath(TilePos start, TilePos target) {
+        hashtable.Clear();
+        queue.Clear();
+
         Node startNode = new Node(start, start, target, null);
         startNode.visited = true;
         hashtable.Add(start, startNode);
@@ -52,7 +76,7 @@ public class Pathfinding {
             Node tileNode = hashtable[tile] as Node;
             tileNode.visited = true;
 
-            if (tile == target)
+            if(tile == target)
                 break;
 
             TilePos[] moves = GetMoves(tile);
@@ -77,19 +101,15 @@ public class Pathfinding {
 
         Stack<TilePos> path = new Stack<TilePos>();
         Node tNode = hashtable[target] as Node;
-        while (tNode != null)
-        {
+        while(tNode != null) {
             path.Push(tNode.position);
             if(tNode.prev == null)
                 break;
             tNode = hashtable[tNode.prev] as Node;
         }
 
-        Debug.Log("OK");
-    }
-
-    public static int CalculateDistance(TilePos a, TilePos b) {
-        return Math.Abs(a.x - b.x) + Math.Abs(a.y - b.y);
+        currentTarget = target;
+        this.path = path;
     }
 
     private TilePos[] GetPossibleMoves() {
