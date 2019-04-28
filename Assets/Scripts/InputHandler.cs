@@ -57,5 +57,8 @@ public class InputHandler : MonoBehaviour {
         if(CheckInput() && tilemap.HasOverlay(gridPos)) {
             gameMaster.PerformAction(gridPos);
         }
+
+        Pathfinding test = new Pathfinding();
+        test.FindPath(new TilePos(0, 1), new TilePos(-5, 1));
     }
 }
