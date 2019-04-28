@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilemapManager : MonoBehaviour {
-    private static TilemapManager INSTANCE = null;
-
-    public static TilemapManager GetInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = (TilemapManager) FindObjectOfType(typeof(TilemapManager));
-        }
-
-        return INSTANCE;
+public class TilemapManager : GenericSingleton<TilemapManager> {
+    protected override void AssignInstance()
+    {
+        _instance = this;
     }
     
     private Tilemap top;

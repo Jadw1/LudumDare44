@@ -29,6 +29,7 @@ public class Pathfinding {
     private Hashtable hashtable;
     private SimplePriorityQueue<TilePos> queue;
     private Stack<TilePos> path;
+    private bool pathNotFound;
 
     private int maxDifference = 3;
     //private int 
@@ -47,9 +48,15 @@ public class Pathfinding {
             FindPath(start, target);
         }
 
+        if (pathNotFound)
+            return null;
+
         TilePos move = path.Pop();
         if(gameMaster.IsEnemyThere(move)) {
             FindPath(start, target);
+            if(pathNotFound)
+                return null;
+
             move = path.Pop();
         }
 
@@ -107,6 +114,8 @@ public class Pathfinding {
                 break;
             tNode = hashtable[tNode.prev] as Node;
         }
+
+        pathNotFound = path.Count == 0;
 
         currentTarget = target;
         this.path = path;

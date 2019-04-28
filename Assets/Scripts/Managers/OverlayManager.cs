@@ -20,7 +20,7 @@ public class OverlayManager : MonoBehaviour {
     private Color highlightHover = new Color(1.0f, 1.0f, 0.0f, 0.2f);
 
     public void RebuildOverlay(TilePos[] tiles) {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
         tilemap.ClearOverlay();
 
         foreach(TilePos tile in tiles) {
@@ -29,12 +29,12 @@ public class OverlayManager : MonoBehaviour {
     }
 
     public void SetTileColorNormal(TilePos tile) {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
         tilemap.SetOverlayColor(tile, highlightNormal);
     }
 
     public void SetTileColorHover(TilePos tile) {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
         tilemap.SetOverlayColor(tile, highlightHover);
     }
 }

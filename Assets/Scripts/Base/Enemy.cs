@@ -14,17 +14,20 @@ public class Enemy : Creature {
     public override void TakeDamage(int d) {
         health -= d;
         if(health <= 0) {
-            GameMaster.UnregisterEnemy(this);
+            GameMaster.instance.UnregisterEnemy(this);
             Destroy(this.gameObject);
         }
     }
 
     public void PerformTurn() {
-        GameMaster.UnregisterEnemy(this);
         TilePos p = GetPos();
-        TilePos pl = GameMaster.GetPlayer().GetPos();
+        TilePos pl = GameMaster.instance.GetPlayer().GetPos();
         TilePos nextMove = pathFinder.GetNextMove(p, pl);
+        if(nextMove == null)
+            return;
+
+        GameMaster.instance.UnregisterEnemy(this);
         Move(nextMove, null);
-        GameMaster.RegisterNewEnemy(this);
+        GameMaster.instance.RegisterNewEnemy(this);
     }
 }
