@@ -11,7 +11,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
     private static Hashtable enemies;
     private static Hashtable items;
 
-    private int turnCounter;
+    public int turnCounter { get; private set; }
 
     private void Start() {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -31,7 +31,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
             items.Add(i.GetPos(), i);
         }
 
-        turnCounter = 0;
+        turnCounter = 1;
     }
 
     /*public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
@@ -69,6 +69,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
         currentAbility.Execute(pos, GetTileEntity(pos));
         SetDefaultAbility();
         EnemiesTurn();
+        turnCounter++;
     }
 
     public void ReceiveAbilityCall(Ability ability) {
