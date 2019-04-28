@@ -42,7 +42,7 @@ public class Pathfinding {
     private Stack<TilePos> path;
     private bool pathNotFound;
 
-    private int maxDifference = 3;
+    private int maxDifference = 1;
 
     private GameMaster gameMaster;
 
@@ -58,8 +58,9 @@ public class Pathfinding {
         path = null;
     }
 
-    public TilePos GetNextMove(TilePos start, TilePos target) {
-        if(path == null || path.Count == 0 || TilePos.CalculateDistance(target, currentTarget) > maxDifference) {
+    public TilePos GetNextMove(TilePos start, TilePos target, ref bool forceRecalculation) {
+        if(forceRecalculation || path == null || path.Count == 0 || TilePos.CalculateDistance(target, currentTarget) > maxDifference) {
+            forceRecalculation = false;
             FindPath(start, target);
         }
 

@@ -14,7 +14,6 @@ public class Player : Creature {
     public new void Move(TilePos to, TileEntity entity) {
         Enemy enemy = entity as Enemy;
         if(enemy != null) {
-            knockback = (to - position).AsNormalizedVector();
             doRecall = true;
             DealDamage(enemy, damage);
         }

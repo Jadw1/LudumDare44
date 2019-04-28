@@ -22,6 +22,9 @@ public class TileEntity : MonoBehaviour {
     }
 
     public void Move(TilePos to, TileEntity entity) {
+        if(doRecall)
+            knockback = knockback = (to - position).AsNormalizedVector();
+
         TilePos off = (doRecall) ? (to - position).AsUnitTilePos() : new TilePos(0, 0);
         position = to  - off;
 

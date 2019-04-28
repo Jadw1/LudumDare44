@@ -1,14 +1,21 @@
-﻿public class Enemy : Creature {
+﻿using System.Linq;
+
+public class Enemy : Creature {
 
     private Pathfinding pathFinder;
+    private bool forcePathRecaculation = false;
 
     private new void Start() {
         base.Start();
-        pathFinder = new Pathfinding(GetPossibleMoves);
+        pathFinder = new Pathfinding(GetMovePossibilities);
     }
 
-    private TilePos[] GetPossibleMoves(TilePos move) {
+    private TilePos[] GetMovePossibilities(TilePos move) {
         return AreaGenerator.GenerateSphericalArea(move, 2);
+    }
+
+    private TilePos[] GetAttackPossibilities() {
+        return AreaGenerator.GenerateSphericalArea(GetPos(), 1);
     }
 
     public override void TakeDamage(int d) {
@@ -20,9 +27,25 @@
     }
 
     public void PerformTurn() {
-        TilePos p = GetPos();
-        TilePos pl = GameMaster.instance.GetPlayer().GetPos();
-        TilePos nextMove = pathFinder.GetNextMove(p, pl);
+        TilePos[] attackTiles = GetAttackPossibilities();
+        Player player = GameMaster.instance.GetPlayer();
+        TilePos playerPosition = player.GetPos();
+
+        if(attackTiles.Contains(playerPosition)) {
+            doRecall = true;
+            forcePathRecaculation = true;
+
+            DealDamage(player, damage);
+
+            GameMaster.instance.UnregisterEnemy(this);
+            Move(playerPosition, player);
+            GameMaster.instance.RegisterNewEnemy(this);
+
+            return;
+        }
+
+
+        TilePos nextMove = pathFinder.GetNextMove(GetPos(), playerPosition, ref forcePathRecaculation);
         if(nextMove == null)
             return;
 
