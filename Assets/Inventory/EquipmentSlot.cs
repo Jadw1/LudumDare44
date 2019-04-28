@@ -11,7 +11,7 @@ public class EquipmentSlot : ItemSlotHandler {
         
         ItemData item = InventoryHandler.instance.GetItem(this.GetSlot());
         if (item != null)
-            abilityHandler.UpdateAbility(item.ability);
+            abilityHandler.UpdateAbility(AbilitiesRegister.instance.abilities[item.ability] as Ability);
         else
             abilityHandler.UpdateAbility(null);
     }

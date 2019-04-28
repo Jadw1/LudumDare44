@@ -9,7 +9,7 @@ public abstract class Ability {
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().ReceiveAbilityCall(this);
     }
 
-    public Sprite GetIcon() {
+    public virtual Sprite GetIcon() {
         return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
     }
 

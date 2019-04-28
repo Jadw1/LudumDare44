@@ -6,13 +6,13 @@ public class ItemData {
     public string name;
     public string description;
     public int price;
-    public Ability ability = new AbilityShieldBash();
+    public string ability;
 
     public ItemData() {
-        
+
     }
 
-    public ItemData(Sprite icon, string name, string description, int price, Ability ability) {
+    public ItemData(Sprite icon, string name, string description, int price, string ability) {
         this.icon = icon;
         this.name = name;
         this.description = description;
