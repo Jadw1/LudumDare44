@@ -9,6 +9,17 @@ public class AbilityButtonHandler : MonoBehaviour {
     private Ability ability;
     private Image icon;
     private Sprite emptyIcon;
+    private Text cooldownText;
+
+    private void Start() {
+        icon = transform.GetComponent<Image>();
+        emptyIcon = icon.sprite;
+
+        cooldownText = transform.parent.GetChild(1).GetComponent<Text>();
+        cooldownText.text = "";
+
+        UpdateAbility(null);
+    }
 
     public void UpdateAbility(Ability ability) {
         this.ability = ability;
@@ -16,16 +27,11 @@ public class AbilityButtonHandler : MonoBehaviour {
         if (ability != null) {
             icon.sprite = ability.GetIcon();
             hasAbility = true;
-        } else {
+        }
+        else {
             icon.sprite = emptyIcon;
             hasAbility = false;
         }
-    }
-
-    private void Start() {
-        icon = transform.GetComponent<Image>();
-        emptyIcon = icon.sprite;
-        UpdateAbility(null);
     }
 
     public void Use() {
