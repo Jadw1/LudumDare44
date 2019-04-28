@@ -13,7 +13,7 @@ public class AreaGenerator {
 
         hashtable.Add(center, true);
 
-        Stack<TilePos> stack = new Stack<TilePos>(Get4DirectionMove(center));
+        Stack<TilePos> stack = new Stack<TilePos>(Get4DirectionMove(center, 1));
 
         while(stack.Count > 0) {
             TilePos tile = stack.Pop();
@@ -24,7 +24,7 @@ public class AreaGenerator {
             hashtable.Add(tile, true);
 
             if(TilePos.CalculateDistance(tile, center) < radius) {
-                TilePos[] moves = Get4DirectionMove(tile);
+                TilePos[] moves = Get4DirectionMove(tile, 1);
                 foreach(var move in moves) {
                     stack.Push(move);
                 }
@@ -34,14 +34,26 @@ public class AreaGenerator {
         return possibilities.ToArray();
     }
 
-    public static TilePos[] Get4DirectionMove(TilePos relativeTo) {
-        TilePos[] moves = new TilePos[4];
+    public static TilePos[] Get4DirectionMove(TilePos center, int radius) {
+        TilemapManager manager = TilemapManager.instance;
+        List<TilePos> moves = new List<TilePos>();
 
-        moves[0] = new TilePos(1, 0) + relativeTo;
-        moves[1] = new TilePos(0, 1) + relativeTo;
-        moves[2] = new TilePos(-1, 0) + relativeTo;
-        moves[3] = new TilePos(0, -1) + relativeTo;
+        TilePos[] baseMoves = new[] {
+            new TilePos(1, 0),
+            new TilePos(0, 1),
+            new TilePos(-1, 0),
+            new TilePos(0, -1)
+        };
 
-        return moves;
+        foreach(var baseMove in baseMoves) {
+            for(int i = 1; i <= radius; i++) {
+                TilePos move = (baseMove * i) + center;
+                if(!manager.IsValidSurface(move))
+                    break;
+                moves.Add(move);
+            }
+        }
+
+        return moves.ToArray();
     }
 }

@@ -11,7 +11,17 @@ public class Pathfinding {
         public Node(TilePos pos, TilePos start, TilePos target, TilePos p) {
             position = pos;
             toTarget = TilePos.CalculateDistance(position, target);
-            fromStart = TilePos.CalculateDistance(position, start);
+            //fromStart = TilePos.CalculateDistance(position, start);
+            //fromStart = 
+            totalDistance = toTarget + fromStart;
+            prev = p;
+            visited = false;
+        }
+
+        public Node(TilePos pos, int fStart, int tTarget, TilePos p) {
+            position = pos;
+            toTarget = tTarget;
+            fromStart = fStart;
             totalDistance = toTarget + fromStart;
             prev = p;
             visited = false;
@@ -25,6 +35,7 @@ public class Pathfinding {
         public bool visited;
     };
 
+    #region PROPERTIES
     private TilePos currentTarget;
     private Hashtable hashtable;
     private SimplePriorityQueue<TilePos> queue;
@@ -32,14 +43,18 @@ public class Pathfinding {
     private bool pathNotFound;
 
     private int maxDifference = 3;
-    //private int 
 
     private GameMaster gameMaster;
 
-    public Pathfinding() {
+    private Func<TilePos, TilePos[]> GetPossibleMoves;
+    #endregion
+
+
+    public Pathfinding(Func<TilePos, TilePos[]> movementFunction) {
         hashtable = new Hashtable();
         queue = new SimplePriorityQueue<TilePos>();
         gameMaster = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+        GetPossibleMoves = movementFunction;
         path = null;
     }
 
@@ -48,7 +63,7 @@ public class Pathfinding {
             FindPath(start, target);
         }
 
-        if (pathNotFound)
+        if(pathNotFound)
             return null;
 
         TilePos move = path.Pop();
@@ -73,7 +88,10 @@ public class Pathfinding {
 
         TilePos[] nodes = GetMoves(start);
         foreach(var node in nodes) {
-            Node n = new Node(node, start, target, start);
+            int distToTarget = TilePos.CalculateDistance(node, target);
+            int distToStart = startNode.fromStart + 1;
+
+            Node n = new Node(node, distToStart, distToTarget, start);
             hashtable.Add(node, n);
             queue.Enqueue(node, n.totalDistance);
         }
@@ -88,7 +106,10 @@ public class Pathfinding {
 
             TilePos[] moves = GetMoves(tile);
             foreach(var move in moves) {
-                Node newNode = new Node(move, start, target, tile);
+                int dToTarget = TilePos.CalculateDistance(move, target);
+                int dToStart = tileNode.fromStart + 1;
+                Node newNode = new Node(move, dToStart, dToTarget, tile);
+
                 if(!hashtable.ContainsKey(move)) {
                     hashtable.Add(move, newNode);
                     queue.Enqueue(move, newNode.totalDistance);
@@ -121,7 +142,11 @@ public class Pathfinding {
         this.path = path;
     }
 
-    private TilePos[] GetPossibleMoves() {
+    private TilePos[] GetMoves(TilePos center) {
+        return gameMaster.AvoidEnemies(GetPossibleMoves(center));
+    }
+
+    /*private TilePos[] GetPossibleMoves() {
         TilePos[] moves = new TilePos[4];
         moves[0] = new TilePos(1, 0);
         moves[1] = new TilePos(0, 1);
@@ -129,9 +154,9 @@ public class Pathfinding {
         moves[3] = new TilePos(0, -1);
 
         return moves;
-    }
+    }*/
 
-    private TilePos[] GetRelativeMoves(TilePos[] moves, TilePos relativeTo) {
+    /*private TilePos[] GetRelativeMoves(TilePos[] moves, TilePos relativeTo) {
         for(int i = 0; i < moves.Length; i++) {
             moves[i] += relativeTo;
         }
@@ -141,5 +166,5 @@ public class Pathfinding {
 
     private TilePos[] GetMoves(TilePos consideringTile) {
         return gameMaster.ValidateTiles(GetPossibleMoves(), consideringTile, true);
-    }
+    }*/
 }
