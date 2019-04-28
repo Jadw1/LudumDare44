@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameMaster : GenericSingleton<GameMaster> {
-
-    protected override void AssignInstance()
-    {
-        _instance = this;
-    }
-
     private static Player player;
     private Ability currentAbility;
 

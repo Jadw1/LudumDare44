@@ -2,5 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioHelper : MonoBehaviour {
+public class AudioHelper : GenericSingleton<AudioHelper> {
+    private void Start() {
+
+    }
 }

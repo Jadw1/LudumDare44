@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryHandler : GenericSingleton<InventoryHandler> {
-    protected override void AssignInstance() {
-        _instance = this;
-    }
-
     #region ITEM AS TILE ENTITY CREATION
     [SerializeField]
     private GameObject realObjectPrefab;
