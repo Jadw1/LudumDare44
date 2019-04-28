@@ -12,12 +12,10 @@ public abstract class Creature : TileEntity {
 
     protected new void Start() {
         base.Start();
+        damage = 1;
+        maxHealth = 10;
         health = maxHealth;
     }
 
     public abstract void TakeDamage(int d);
-
-    public void DealDamage(Creature to, int d) {
-        to.TakeDamage(d);
-    }
 }

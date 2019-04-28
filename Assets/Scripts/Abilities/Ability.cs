@@ -13,6 +13,10 @@ public abstract class Ability {
         return null;
     }
 
+    public virtual int GetCooldown() {
+        return 1;
+    }
+
     public abstract void Execute(TilePos pos, TileEntity entity);
     public abstract TilePos[] GetValidTiles(TilePos relativeTo);
 }

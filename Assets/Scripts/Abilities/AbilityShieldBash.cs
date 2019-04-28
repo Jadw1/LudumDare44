@@ -8,19 +8,18 @@ public class AbilityShieldBash : Ability {
         Player player = GameMaster.instance.GetPlayer();
         player.Move(pos, entity);
 
-        AudioHelper.instance.Play("swish_1");
+        AudioHelper.instance.Play("swish");
 
         if (entity as Enemy != null) {
             Vector3 plyPos = player.GetPos().AsVectorCentered();
             Vector3 targetPos = pos.AsVectorCentered();
             VisualEffectsHelper.instance.CreateSparks( plyPos + (targetPos - plyPos) / 2.0f);
-            AudioHelper.instance.Play("swish_3");
+            AudioHelper.instance.Play("swish1");
         }
     }
 
     public override Sprite GetIcon() {
-        return ResourceHelper.GetSprite("ability_shield_bash");
-        //return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
+        return Resources.Load<Sprite>("sprites/icons/shield-bash");
     }
     
     public override TilePos[] GetValidTiles(TilePos relativeTo) {

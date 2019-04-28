@@ -15,7 +15,11 @@ public class Player : Creature {
         Enemy enemy = entity as Enemy;
         if(enemy != null) {
             doRecall = true;
-            DealDamage(enemy, damage);
+            enemy.TakeDamage(damage);
+            AudioHelper.instance.Play("swish2");
+        }
+        else {
+            AudioHelper.instance.Play("click");
         }
         
         RealItem item = entity as RealItem;

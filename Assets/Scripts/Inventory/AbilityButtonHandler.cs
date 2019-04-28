@@ -11,6 +11,7 @@ public class AbilityButtonHandler : MonoBehaviour {
     private Image icon;
     private Sprite emptyIcon;
     private TextMeshProUGUI cooldownText;
+    private int unlockAt;
 
     private void Start() {
         icon = transform.GetComponent<Image>();
@@ -36,9 +37,15 @@ public class AbilityButtonHandler : MonoBehaviour {
     }
 
     public void Use() {
+        /*
+        if (unlockAt != -1) {
+            AudioHelper.instance.Play("handle_small_leather");
+            return;
+        }*/
+
         if (ability != null) {
             ability.CallGameMaster();
-            AudioHelper.instance.Play("switch_2");
+            AudioHelper.instance.Play("switch2");
         }
         else {
             AudioHelper.instance.Play("switch");

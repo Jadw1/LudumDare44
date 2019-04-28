@@ -35,7 +35,7 @@ public class Enemy : Creature {
             doRecall = true;
             forcePathRecaculation = true;
 
-            DealDamage(player, damage);
+            player.TakeDamage(damage);
 
             GameMaster.instance.UnregisterEnemy(this);
             Move(playerPosition, player);

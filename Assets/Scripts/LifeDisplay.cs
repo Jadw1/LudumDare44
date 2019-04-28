@@ -16,6 +16,7 @@ public class LifeDisplay : MonoBehaviour {
     private void Update() {
         int newHealth = GameMaster.instance.GetPlayer().health;
         int newMaxHealth = GameMaster.instance.GetPlayer().maxHealth;
+
         if (newHealth != health || newMaxHealth != maxHealth) {
             health = newHealth;
             maxHealth = newMaxHealth;

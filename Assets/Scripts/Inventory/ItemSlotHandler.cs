@@ -59,7 +59,7 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
         AudioHelper.instance.Play("rollover");
 
         if (this.isEquipmentSlot)
-          AudioHelper.instance.Play("switch_2");
+          AudioHelper.instance.Play("switch2");
 
         UpdateSlot();
         other.UpdateSlot();

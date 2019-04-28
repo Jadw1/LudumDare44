@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5377a94c1419c734eb74beb771384c78, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: 
+  sounds:
+  - key: click
+    clip: {fileID: 8300000, guid: e0f8ae47e6326944997bd56c8af4e0e1, type: 3}
+  - key: swish
+    clip: {fileID: 8300000, guid: 6c4c0b3bb59aec745b86a5cd9e81c1ad, type: 3}
+  - key: swish1
+    clip: {fileID: 8300000, guid: 80953dfacb6c91a4d9177f19a53e22c0, type: 3}
+  - key: swish2
+    clip: {fileID: 8300000, guid: 4a366d660c7abb24287be51b6819e010, type: 3}
+  - key: switch
+    clip: {fileID: 8300000, guid: b1bcdf9e2b904284d976b0d166df62a9, type: 3}
+  - key: switch2
+    clip: {fileID: 8300000, guid: f635efbbbd9707c49828e4662f628577, type: 3}
+  - key: handle_small_leather
+    clip: {fileID: 8300000, guid: 88f0ae99ea013894eb345d20d70c53da, type: 3}
+  - key: rollover
+    clip: {fileID: 8300000, guid: 05dc2ef75cda49246b31f4020b5bdd17, type: 3}
