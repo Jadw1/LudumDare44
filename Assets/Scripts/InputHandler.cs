@@ -58,7 +58,7 @@ public class InputHandler : MonoBehaviour {
             gameMaster.PerformAction(gridPos);
         }
 
-        Pathfinding test = new Pathfinding();
-        test.FindPath(new TilePos(0, 1), new TilePos(-5, 1));
+        //Pathfinding test = new Pathfinding();
+        //test.FindPath(new TilePos(0, 1), new TilePos(-5, 1));
     }
 }

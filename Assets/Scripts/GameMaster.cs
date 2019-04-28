@@ -62,7 +62,8 @@ public class GameMaster : MonoBehaviour {
     public void ReceiveAbilityCall(Ability ability) {
         currentAbility = ability;
         TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles(), player.GetPos());
-        OverlayManager.GetInstance().RebuildOverlay(tiles);
+        OverlayManager.GetInstance().RebuildOverlay(AreaGenerator.GenerateSphericalArea(player.GetPos(), 3));
+        //OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
 
     public void SetDefaultAbility() {

@@ -38,9 +38,9 @@ public class AreaGenerator {
         TilePos[] moves = new TilePos[4];
 
         moves[0] = new TilePos(1, 0) + relativeTo;
-        moves[0] = new TilePos(0, 1) + relativeTo;
-        moves[0] = new TilePos(-1, 0) + relativeTo;
-        moves[0] = new TilePos(0, -1) + relativeTo;
+        moves[1] = new TilePos(0, 1) + relativeTo;
+        moves[2] = new TilePos(-1, 0) + relativeTo;
+        moves[3] = new TilePos(0, -1) + relativeTo;
 
         return moves;
     }
