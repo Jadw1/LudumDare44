@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class AbilityShieldBash : Ability {
     public override void Execute(TilePos pos, TileEntity entity) {
-        Player player = GameMaster.GetPlayer();
+        Player player = GameMaster.instance.GetPlayer();
         player.Move(pos, entity);
         
         if (entity as Enemy != null) {

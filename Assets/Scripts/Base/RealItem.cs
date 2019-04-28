@@ -12,6 +12,6 @@ public class RealItem : TileEntity {
     }
 
     private void OnDestroy() {
-        GameMaster.UnregisterItem(this);
+        GameMaster.instance.UnregisterItem(this);
     }
 }
