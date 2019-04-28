@@ -7,7 +7,7 @@ public class AbilityShieldBash : Ability {
         GameMaster.GetPlayer().Move(pos, entity);
     }
     
-    public override TilePos[] GetValidTiles() {
+    public override TilePos[] GetValidTiles(TilePos relativeTo) {
         List<TilePos> possibilities = new List<TilePos>();
         for(int x = -3; x < 5; x++) {
             for(int y = -3; y < 5; y++) {
