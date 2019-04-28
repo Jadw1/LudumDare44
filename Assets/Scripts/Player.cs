@@ -36,7 +36,7 @@ public class Player : Creature {
         }
     }
 
-    public IAbility GetMoveAbility() {
+    public Ability GetMoveAbility() {
         return moveAbility;
     }
 }

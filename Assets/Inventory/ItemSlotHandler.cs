@@ -28,7 +28,7 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
         return isEquipmentSlot;
     }
 
-    public void UpdateSlot() {
+    public virtual void UpdateSlot() {
         ItemData item = InventoryHandler.instance.GetItem(slot);
         if (item != null) {
             icon.enabled = true;

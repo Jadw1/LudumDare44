@@ -77,7 +77,6 @@ public class InventoryHandler : MonoBehaviour {
         if (slot < 0 || slot >= items.Length) return null;
         ItemData old = items[slot];
         items[slot] = item;
-        Debug.Log(slot);
         slots[slot].UpdateSlot();
         return old;
     }

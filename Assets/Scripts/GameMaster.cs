@@ -9,7 +9,7 @@ public enum PlayerAction {
 
 public class GameMaster : MonoBehaviour {
     private static Player player;
-    private IAbility currentAbility;
+    private Ability currentAbility;
 
     private static Hashtable enemies;
     private static Hashtable items;
@@ -59,9 +59,9 @@ public class GameMaster : MonoBehaviour {
         SetDefaultAbility();
     }
 
-    public void ReceiveAbilityCall(IAbility ability) {
+    public void ReceiveAbilityCall(Ability ability) {
         currentAbility = ability;
-        TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles(), currentAbility.GetRelativeTile());
+        TilePos[] tiles = ValidateTiles(currentAbility.GetValidTiles(), player.GetPos());
         OverlayManager.GetInstance().RebuildOverlay(tiles);
     }
 
