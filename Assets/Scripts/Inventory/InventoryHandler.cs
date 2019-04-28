@@ -12,7 +12,7 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
     private GameObject realObjectPrefab;
 
     public bool CreateRealItem(TilePos pos, ItemData itemData) {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
 
         if(!tilemap.IsValidSurface(pos) || (GameMaster.instance.GetTileEntity(pos) as RealItem) != null)
             return false;

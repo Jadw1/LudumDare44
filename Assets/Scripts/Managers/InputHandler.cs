@@ -36,7 +36,7 @@ public class InputHandler : MonoBehaviour {
     }
 
     private void Update() {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         TilePos gridPos = tilemap.WorldToCell(mousePos);
 

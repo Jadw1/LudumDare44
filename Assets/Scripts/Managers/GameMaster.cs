@@ -40,7 +40,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
     }
 
     public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
-        TilemapManager tilemap = TilemapManager.GetInstance();
+        TilemapManager tilemap = TilemapManager.instance;
         List<TilePos> possibilities = new List<TilePos>();
 
         foreach(var pos in tiles) {

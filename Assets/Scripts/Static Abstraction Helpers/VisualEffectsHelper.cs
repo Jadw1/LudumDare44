@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VisualEffectsHelper : MonoBehaviour {
-    public static VisualEffectsHelper instance;
+public class VisualEffectsHelper : GenericSingleton<VisualEffectsHelper> {
+    protected override void AssignInstance() {
+        _instance = this;
+    }
 
     [SerializeField]
     private GameObject sparks;
-
-    private void Awake() {
-        instance = this;
-    }
 
     public void CreateSparks(Vector3 pos) {
         GameObject obj = Instantiate(sparks);

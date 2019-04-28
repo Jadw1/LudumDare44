@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class AreaGenerator {
 
     public static TilePos[] GenerateSphericalArea(TilePos center, int radius) {
-        TilemapManager manager = TilemapManager.GetInstance();
+        TilemapManager manager = TilemapManager.instance;
         Hashtable hashtable = new Hashtable();
         List<TilePos> possibilities = new List<TilePos>();
 
