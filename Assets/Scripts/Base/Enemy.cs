@@ -20,10 +20,13 @@ public class Enemy : Creature {
     }
 
     public void PerformTurn() {
-        GameMaster.instance.UnregisterEnemy(this);
         TilePos p = GetPos();
         TilePos pl = GameMaster.instance.GetPlayer().GetPos();
         TilePos nextMove = pathFinder.GetNextMove(p, pl);
+        if(nextMove == null)
+            return;
+
+        GameMaster.instance.UnregisterEnemy(this);
         Move(nextMove, null);
         GameMaster.instance.RegisterNewEnemy(this);
     }
