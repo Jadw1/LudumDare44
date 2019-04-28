@@ -16,7 +16,8 @@ public class AbilityShieldBash : Ability {
     }
 
     public override Sprite GetIcon() {
-        return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
+        return ResourceHelper.GetSprite("ability_shield_bash");
+        //return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
     }
     
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
