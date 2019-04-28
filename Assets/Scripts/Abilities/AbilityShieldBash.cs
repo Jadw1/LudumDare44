@@ -7,16 +7,17 @@ public class AbilityShieldBash : Ability {
     public override void Execute(TilePos pos, TileEntity entity) {
         Player player = GameMaster.GetPlayer();
         player.Move(pos, entity);
-        ParticleSystem ps = player.transform.GetChild(0).GetComponent<ParticleSystem>();
-        ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
-        emitParams.position = pos.AsVector();
-        emitParams.startSize = 0.5f;
-        emitParams.startColor = new Color(1.0f, 1.0f, 0.0f, 1.0f);
-        ps.Emit(emitParams, 100);
+        
+        if (entity as Enemy != null) {
+            Vector3 plyPos = player.GetPos().AsVectorCentered();
+            Vector3 targetPos = pos.AsVectorCentered();
+            VisualEffectsHelper.instance.CreateSparks( plyPos + (targetPos - plyPos) / 2.0f);
+        }
     }
 
     public override Sprite GetIcon() {
-        return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
+        return ResourceHelper.GetSprite("ability_shield_bash");
+        //return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
     }
     
     public override TilePos[] GetValidTiles(TilePos relativeTo) {

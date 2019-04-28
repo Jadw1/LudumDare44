@@ -10,7 +10,7 @@ public abstract class Ability {
     }
 
     public virtual Sprite GetIcon() {
-        return (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Textures/ability icons/shield-bash.png", typeof(Sprite));
+        return null;
     }
 
     public abstract void Execute(TilePos pos, TileEntity entity);
