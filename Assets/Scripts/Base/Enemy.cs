@@ -8,7 +8,7 @@
     }
 
     private TilePos[] GetPossibleMoves(TilePos move) {
-        return AreaGenerator.GenerateSphericalArea(move, 1);
+        return AreaGenerator.GenerateSphericalArea(move, 2);
     }
 
     public override void TakeDamage(int d) {
