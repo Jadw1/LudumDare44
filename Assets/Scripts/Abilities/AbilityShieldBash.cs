@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilityShieldBash : Ability {
     public override void Execute(TilePos pos, TileEntity entity) {
-        
+        GameMaster.GetPlayer().Move(pos, entity);
     }
     
     public override TilePos[] GetValidTiles() {
