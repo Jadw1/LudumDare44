@@ -12,7 +12,7 @@ public class AbilityShieldBash : Ability {
         for(int x = -3; x < 5; x++) {
             for(int y = -3; y < 5; y++) {
                 if(x != 0 || y != 0) {
-                    TilePos pos = new TilePos(x, y);
+                    TilePos pos = new TilePos(x, y) + relativeTo;
                     possibilities.Add(pos);
                 }
             }
