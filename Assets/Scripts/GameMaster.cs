@@ -33,7 +33,7 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    private TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
+    public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
         TilemapManager tilemap = TilemapManager.GetInstance();
         List<TilePos> possibilities = new List<TilePos>();
 
