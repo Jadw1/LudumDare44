@@ -131,6 +131,9 @@ public class Pathfinding {
         Stack<TilePos> path = new Stack<TilePos>();
         Node tNode = hashtable[target] as Node;
         while(tNode != null) {
+            if(tNode.position == start)
+                break;
+
             path.Push(tNode.position);
             if(tNode.prev == null)
                 break;

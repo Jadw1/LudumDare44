@@ -11,7 +11,7 @@ public class Enemy : Creature {
     }
 
     private TilePos[] GetMovePossibilities(TilePos move) {
-        return AreaGenerator.GenerateSphericalArea(move, 2);
+        return AreaGenerator.GenerateSphericalArea(move, 1);
     }
 
     private TilePos[] GetAttackPossibilities() {
