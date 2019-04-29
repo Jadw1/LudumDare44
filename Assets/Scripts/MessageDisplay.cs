@@ -95,10 +95,15 @@ public class MessageDisplay : GenericSingleton<MessageDisplay> {
     }
 
     private void Update() {
+
+        if (timer == 0.0f) {
+            Refresh();
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= slideDuration) {
-            Refresh();
+            timer = 0.0f;
         }
     }
 
@@ -106,7 +111,7 @@ public class MessageDisplay : GenericSingleton<MessageDisplay> {
         queue.Enqueue(msg);
         
         if (current == null) {
-            Refresh();
+            //Refresh();
         }
     }
 }

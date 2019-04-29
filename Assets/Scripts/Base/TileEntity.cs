@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class TileEntity : MonoBehaviour {
 
     protected TilePos position;
+    public bool isObstacle { protected set; get; } = false;
     private bool isMoving = false;
     protected bool doRecall = false;
     private Vector3 targetPosition = new Vector3();
@@ -13,12 +14,8 @@ public class TileEntity : MonoBehaviour {
     private Vector3 dummy = new Vector3();
 
     protected void Start() {
-        Grid grid = (Grid)FindObjectOfType(typeof(Grid));
-        Vector3Int pos = grid.WorldToCell(transform.position);
-
-        position = new TilePos(pos.x, pos.y);
-
-        targetPosition = pos;
+        position = TilemapManager.instance.WorldToCell(transform.position);
+        targetPosition = position.AsVector();
     }
 
     public void Move(TilePos to, TileEntity entity) {

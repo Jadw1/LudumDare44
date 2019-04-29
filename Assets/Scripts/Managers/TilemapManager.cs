@@ -4,16 +4,19 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class TilemapManager : GenericSingleton<TilemapManager> {
+    private Grid grid;
     private Tilemap top;
     private Tilemap middle;
     private Tilemap bottom;
     private Tilemap overlay;
 
+    private Hashtable obstacles = new Hashtable();
+
     [SerializeField]
     private Tile highlightTile;
 
     private void Start() {
-        Grid grid = (Grid) FindObjectOfType(typeof(Grid));
+        grid = GetComponent<Grid>();
 
         top = grid.transform.Find("Top").GetComponent<Tilemap>();
         middle = grid.transform.Find("Middle").GetComponent<Tilemap>();
@@ -23,7 +26,7 @@ public class TilemapManager : GenericSingleton<TilemapManager> {
     }
 
     public bool IsValidSurface(TilePos pos) {
-        return bottom.HasTile(pos.AsVector());
+        return !obstacles.Contains(pos) && bottom.HasTile(pos.AsVector());
     }
 
     public bool HasOverlay(TilePos pos) {
@@ -46,6 +49,20 @@ public class TilemapManager : GenericSingleton<TilemapManager> {
     }
 
     public TilePos WorldToCell(Vector2 pos) {
-        return new TilePos(overlay.WorldToCell(pos));
+        return new TilePos(grid.WorldToCell(pos));
+    }
+
+    public bool RegisterObstacle(TilePos pos) {
+        if (obstacles.Contains(pos)) {
+            return false;
+        }
+        obstacles[pos] = true;
+        return true;
+    }
+
+    public bool UnregisterObstacle(TilePos pos) {
+        if (!obstacles.Contains(pos)) return false;
+        obstacles.Remove(pos);
+        return true;
     }
 }
