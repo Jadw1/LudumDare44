@@ -6,7 +6,7 @@ using UnityEditor;
 public class AbilitySwordSpin : Ability {
     public override bool Execute(TilePos pos, TileEntity entity) {
 
-        TilePos[] tiles = GetValidTiles(pos);
+        TilePos[] tiles = GetValidTiles(GameMaster.instance.GetPlayer().GetPos());
 
         AudioHelper.instance.Play("swish");
         AudioHelper.instance.Play("swish2");
