@@ -55,6 +55,23 @@ public class Enemy : Creature {
         Player player = GameMaster.instance.GetPlayer();
         TilePos playerPosition = player.GetPos();
 
+        if(TilePos.CalculateDistance(playerPosition, position) > 15) {
+            TilePos[] randomMoves = GetMovePossibilities(position);
+            int xd = 0;
+            TilePos mv = randomMoves[random.Next(randomMoves.Length)];
+            while(GameMaster.instance.IsEnemyThere(mv) && xd < 10) {
+                mv = randomMoves[random.Next(randomMoves.Length)];
+            }
+            if(GameMaster.instance.IsEnemyThere(mv))
+                return;
+
+            GameMaster.instance.UnregisterEnemy(this);
+            Move(mv, null);
+            GameMaster.instance.RegisterNewEnemy(this);
+            return;
+        }
+
+
         if(attackTiles.Contains(playerPosition)) {
             doRecall = true;
             forcePathRecaculation = true;
