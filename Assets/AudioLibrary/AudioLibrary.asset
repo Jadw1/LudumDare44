@@ -39,3 +39,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8dd743e97b014b84481ed1ce896a905c, type: 3}
   - key: bow
     clip: {fileID: 8300000, guid: 98aaa94d57f995e4ab97fa0604424fef, type: 3}
+  - key: switch32
+    clip: {fileID: 8300000, guid: f658995a25c25a0458b120720165e6f0, type: 3}
+  - key: switch15
+    clip: {fileID: 8300000, guid: 36d883862d6c40448a1da151a8ccf21f, type: 3}

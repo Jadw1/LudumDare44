@@ -30,6 +30,6 @@ public class AbilitySwordSpin : Ability {
     }
 
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
-        return AreaGenerator.Get4DirectionMove(relativeTo, 5);
+        return AreaGenerator.GenerateSphericalArea(relativeTo, 1);
     }
 }

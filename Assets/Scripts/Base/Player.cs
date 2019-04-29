@@ -9,6 +9,9 @@ public class Player : Creature {
     private void Start() {
         base.Start();
         moveAbility = new PlayerAbility(Move, GetPos);
+
+        health = 50;
+        maxHealth = 100;
     }
 
     public new void Move(TilePos to, TileEntity entity) {
@@ -35,7 +38,15 @@ public class Player : Creature {
     public override void TakeDamage(int d) {
         health -= d;
         if(health <= 0) {
-            //TODO: implement 
+            health = 0;
+        }
+    }
+
+    public void Heal(int amt) {
+        health += amt;
+
+        if (health > maxHealth) {
+            health = maxHealth;
         }
     }
 

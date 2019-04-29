@@ -62,7 +62,6 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
         InventoryHandler inv = InventoryHandler.instance;
         
         ItemSlotHandler other = eventData.pointerDrag.transform.parent.GetComponent<ItemSlotHandler>();
-        
         ItemData item = inv.SetItem(other.slot, inv.GetItem(slot));
         inv.SetItem(slot, item);
 
@@ -73,5 +72,7 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
 
         UpdateSlot();
         other.UpdateSlot();
+
+        GetComponent<Button>().Select();
     }
 }

@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  initialHealth: 7
 --- !u!210 &5466251956757380690
 SortingGroup:
   m_ObjectHideFlags: 0

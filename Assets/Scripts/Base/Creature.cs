@@ -5,6 +5,10 @@ using UnityEngine;
 public abstract class Creature : TileEntity {
     [SerializeField]
     protected int damage;
+
+    [SerializeField]
+    private int initialHealth;
+
     [SerializeField]
     public int health { protected set; get; }
     [SerializeField]
@@ -12,9 +16,9 @@ public abstract class Creature : TileEntity {
 
     protected new void Start() {
         base.Start();
-        damage = 1;
-        maxHealth = 10;
-        health = maxHealth;
+
+        health = initialHealth;
+        maxHealth = initialHealth;
     }
 
     public abstract void TakeDamage(int d);
