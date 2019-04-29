@@ -1,9 +1,16 @@
 ﻿using System.Linq;
+using UnityEngine;
+using Random = System.Random;
 
 public class Enemy : Creature {
 
+    private static Random random = new Random();
+
     private Pathfinding pathFinder;
     private bool forcePathRecaculation = false;
+
+    [SerializeField]
+    private GameObject[] prefabs;
 
     private new void Start() {
         base.Start();
@@ -26,6 +33,19 @@ public class Enemy : Creature {
         health -= d;
         if(health <= 0) {
             GameMaster.instance.UnregisterEnemy(this);
+
+            TileEntity ent = GameMaster.instance.GetTileEntity(this.position) as RealItem;
+            if (ent == null) {
+                GameObject prefab = prefabs[random.Next(prefabs.Length)];
+
+                if (prefab != null) {
+                    GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
+                    RealItem item = obj.GetComponent<RealItem>();
+                    item.Start();
+                    GameMaster.instance.RegisterNewItem(item);
+                }
+            }
+
             Destroy(this.gameObject);
         }
     }

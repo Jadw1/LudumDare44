@@ -116,6 +116,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   initialHealth: 7
+  prefabs:
+  - {fileID: 6986065549105004841, guid: f0295e64adef82f4f8e1a81cb90ce5a2, type: 3}
+  - {fileID: 1447542145562845129, guid: e7af8b69641a44347a7f87e297f9f15a, type: 3}
+  - {fileID: 3570576671035717482, guid: 49449bbf86744594c925f8c174b824c0, type: 3}
 --- !u!210 &5466251956757380690
 SortingGroup:
   m_ObjectHideFlags: 0

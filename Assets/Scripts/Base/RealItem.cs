@@ -13,7 +13,7 @@ public class RealItem : TileEntity {
     public ItemData item;
     public AbilityType defaultAbility;
 
-    private void Start() {
+    public void Start() {
         base.Start();
         transform.GetComponent<SpriteRenderer>().sprite = item.icon;
 

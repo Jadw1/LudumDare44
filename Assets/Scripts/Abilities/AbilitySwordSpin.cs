@@ -5,17 +5,19 @@ using UnityEditor;
 
 public class AbilitySwordSpin : Ability {
     public override bool Execute(TilePos pos, TileEntity entity) {
-        Player player = GameMaster.instance.GetPlayer();
-        player.Move(pos, entity);
+
+        TilePos[] tiles = GetValidTiles(pos);
 
         AudioHelper.instance.Play("swish");
-        Enemy enemy = entity as Enemy;
-        if (enemy != null) {
-            Vector3 plyPos = player.GetPos().AsVectorCentered();
-            Vector3 targetPos = pos.AsVectorCentered();
-            VisualEffectsHelper.instance.CreateSparks(plyPos + (targetPos - plyPos) / 2.0f);
-            enemy.TakeDamage(10);
-            AudioHelper.instance.Play("swish1");
+        AudioHelper.instance.Play("swish2");
+
+        foreach (TilePos tile in tiles) {
+            Enemy enemy = GameMaster.instance.GetTileEntity(tile) as Enemy;
+
+            if (enemy != null) {
+                enemy.TakeDamage(8);
+                VisualEffectsHelper.instance.CreateSparks(enemy.position.AsVector());
+            }
         }
 
         return true;
@@ -30,6 +32,6 @@ public class AbilitySwordSpin : Ability {
     }
 
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
-        return AreaGenerator.GenerateSphericalArea(relativeTo, 1);
+        return AreaGenerator.GenerateSphericalArea(relativeTo, 2);
     }
 }
