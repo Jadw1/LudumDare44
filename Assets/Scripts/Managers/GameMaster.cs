@@ -41,9 +41,6 @@ public class GameMaster : GenericSingleton<GameMaster> {
         }
 
         turnCounter = 1;
-
-        MessageDisplay.instance.ShowMessage(new MessageDisplay.Message(new string[] { "Hello!", "This works!", "Many messages can be queued." }, null));
-        MessageDisplay.instance.ShowMessage(new MessageDisplay.Message(new string[] { "Even long text should display fine.", "The limitation is the constant duration of each slide."}, null));
     }
 
     /*public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {

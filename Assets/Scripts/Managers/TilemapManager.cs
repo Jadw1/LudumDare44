@@ -46,6 +46,6 @@ public class TilemapManager : GenericSingleton<TilemapManager> {
     }
 
     public TilePos WorldToCell(Vector2 pos) {
-        return new TilePos(overlay.WorldToCell(pos));
+        return new TilePos(pos - new Vector2(0.5f, 0.5f));
     }
 }

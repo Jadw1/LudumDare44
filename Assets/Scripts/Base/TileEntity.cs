@@ -22,12 +22,14 @@ public class TileEntity : MonoBehaviour {
     }
 
     public void Move(TilePos to, TileEntity entity) {
-        if(doRecall)
+
+        TilePos old = position;
+        if (doRecall)
             knockback = knockback = (to - position).AsNormalizedVector();
 
         TilePos off = (doRecall) ? (to - position).AsUnitTilePos() : new TilePos(0, 0);
         position = to  - off;
-
+        EventManager.CallOnEntityMovedEvent(this, old, position);
         targetPosition = new Vector3(position.x, position.y, 0) + (0.5f * knockback);
         isMoving = true;
     }

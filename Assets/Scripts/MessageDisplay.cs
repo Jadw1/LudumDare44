@@ -25,7 +25,7 @@ public class MessageDisplay : GenericSingleton<MessageDisplay> {
         public string[] text;
         public Delegate callback;
 
-        public Message(string[] text, Delegate callback) {
+        public Message(string[] text, Action callback) {
             this.text = text;
             this.callback = callback;
         }

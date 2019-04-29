@@ -13,7 +13,7 @@ public class RealItem : TileEntity {
 
     private void Start() {
         base.Start();
-        transform.GetComponentInChildren<SpriteRenderer>().sprite = item.icon;
+        transform.GetComponent<SpriteRenderer>().sprite = item.icon;
 
         if (item != null && item.ability == null) {
             switch (defaultAbility) {
