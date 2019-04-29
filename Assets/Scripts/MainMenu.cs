@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Exit() {
         AudioHelper.instance.Play("click");
+        Application.Quit();
     }
 
     public void RollCreditsIn() {
