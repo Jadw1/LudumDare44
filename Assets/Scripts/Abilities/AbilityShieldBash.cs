@@ -9,11 +9,12 @@ public class AbilityShieldBash : Ability {
         player.Move(pos, entity);
 
         AudioHelper.instance.Play("swish");
-
-        if (entity as Enemy != null) {
+        Enemy enemy = entity as Enemy;
+        if (enemy != null) {
             Vector3 plyPos = player.GetPos().AsVectorCentered();
             Vector3 targetPos = pos.AsVectorCentered();
             VisualEffectsHelper.instance.CreateSparks( plyPos + (targetPos - plyPos) / 2.0f);
+            enemy.TakeDamage(5);
             AudioHelper.instance.Play("swish1");
         }
 
