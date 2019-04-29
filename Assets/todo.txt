@@ -1,0 +1,7 @@
+﻿BUGS TO FIX:
+-spin ability 
+-untakable items
+
+TO ADD:
+-granades
+-better spin ability particle effect
