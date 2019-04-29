@@ -40,6 +40,7 @@ public class Player : Creature {
         if(health <= 0) {
             health = 0;
         }
+        EventManager.CallOnPlayerHealthChangedEvent(health);
     }
 
     public void Heal(int amt) {
@@ -48,6 +49,8 @@ public class Player : Creature {
         if (health > maxHealth) {
             health = maxHealth;
         }
+
+        EventManager.CallOnPlayerHealthChangedEvent(health);
     }
 
     public Ability GetMoveAbility() {

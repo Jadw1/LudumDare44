@@ -12,4 +12,12 @@ public class EventManager {
     public static void CallOnEntityMovedEvent(TileEntity entity, TilePos previous, TilePos current) {
         OnEntityMovedEvent?.Invoke(entity, previous, current);
     }
+
+    public delegate void OnPlayerHealthChanged(int health);
+
+    public static event OnPlayerHealthChanged OnPlayerHealthChangedEvent;
+
+    public static void CallOnPlayerHealthChangedEvent(int health) {
+        OnPlayerHealthChangedEvent?.Invoke(health);
+    }
 }

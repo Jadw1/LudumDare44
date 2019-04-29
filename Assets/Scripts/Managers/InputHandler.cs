@@ -54,6 +54,10 @@ public class InputHandler : MonoBehaviour {
             previousHighlight = gridPos;
         }
 
+        if (Input.GetButtonDown("Cancel")) {
+            gameMaster.SetDefaultAbility();
+        }
+
         if(CheckInput() && tilemap.HasOverlay(gridPos)) {
             gameMaster.PerformAction(gridPos);
         }

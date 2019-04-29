@@ -8,13 +8,11 @@ public class DeathScreen : MonoBehaviour {
     private TextMeshProUGUI text;
     private Transform screen;
 
-    private void OnTurnEnd(int turn) {
-        Player player = GameMaster.instance.GetPlayer();
-
-        if (player.health <= 0) {
+    private void OnPlayerHealthChanged(int health) {
+        if (health <= 0) {
             OnDeath();
         }
-        else if (player.health == player.maxHealth) {
+        else if (health == 100) {
             OnWin();
         }
     }
@@ -32,7 +30,7 @@ public class DeathScreen : MonoBehaviour {
     }
 
     private void Start() {
-        GameMaster.OnTurnEnd += OnTurnEnd;
+        EventManager.OnPlayerHealthChangedEvent += OnPlayerHealthChanged;
 
         screen = transform.GetChild(0);
         text = screen.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
