@@ -57,6 +57,17 @@ public class Pathfinding {
     }
 
     public TilePos GetNextMove(TilePos start, TilePos target, ref bool forceRecalculation) {
+        FindPath(start, target);
+        if(pathNotFound) {
+            return null;
+        }
+
+        TilePos move = path.Pop();
+        if(move == GameMaster.instance.GetPlayer().position)
+            return null;
+
+        return move;
+        /*
         if(forceRecalculation || path == null || path.Count == 0 || TilePos.CalculateDistance(target, currentTarget) > maxDifference) {
             forceRecalculation = false;
             FindPath(start, target);
@@ -74,7 +85,7 @@ public class Pathfinding {
             move = path.Pop();
         }
 
-        return move;
+        return move;*/
     }
 
     public void FindPath(TilePos start, TilePos target) {

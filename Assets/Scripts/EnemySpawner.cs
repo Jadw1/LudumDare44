@@ -8,10 +8,14 @@ public class EnemySpawner : MonoBehaviour {
 
     private GameObject instance;
 
-    public Enemy Spawn() {
+    public void Spawn() {
         if (instance != null) {
-            return instance.GetComponent<Enemy>();
+            return;
         }
+
+        TilePos pos = TilemapManager.instance.WorldToCell(transform.position);
+        if(GameMaster.instance.IsEnemyThere(pos) || pos == GameMaster.instance.GetPlayer().position)
+            return;
 
         GameObject newEnemy = Instantiate(prefab);
         newEnemy.transform.position = transform.position;
@@ -23,6 +27,6 @@ public class EnemySpawner : MonoBehaviour {
 
         instance = newEnemy;
 
-        return enemy;
+        return;
     }
 }
