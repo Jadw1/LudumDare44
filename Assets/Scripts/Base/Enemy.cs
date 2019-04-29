@@ -10,6 +10,10 @@ public class Enemy : Creature {
         pathFinder = new Pathfinding(GetMovePossibilities);
     }
 
+    public void Reset() {
+        Start();
+    }
+
     private TilePos[] GetMovePossibilities(TilePos move) {
         return AreaGenerator.GenerateSphericalArea(move, 1);
     }

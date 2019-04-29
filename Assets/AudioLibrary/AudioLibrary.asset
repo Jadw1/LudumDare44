@@ -37,3 +37,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a7a2b06ce63f57e47a52f17881130bd6, type: 3}
   - key: book_flip2
     clip: {fileID: 8300000, guid: 8dd743e97b014b84481ed1ce896a905c, type: 3}
+  - key: bow
+    clip: {fileID: 8300000, guid: 98aaa94d57f995e4ab97fa0604424fef, type: 3}

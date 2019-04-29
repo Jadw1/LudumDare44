@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public enum AbilityType {
     SHIELD_BASH,
+    SWORD_SPIN,
+    BOW,
 }
 
 public class RealItem : TileEntity {
@@ -21,6 +23,14 @@ public class RealItem : TileEntity {
                         item.ability = new AbilityShieldBash();
                         break;
                     }
+                case AbilityType.SWORD_SPIN: {
+                    item.ability = new AbilitySwordSpin();
+                    break;
+                }
+                case AbilityType.BOW: {
+                    item.ability = new AbilityBow();
+                    break;
+                }
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class AbilityShieldBash : Ability {
+public class AbilitySwordSpin : Ability {
     public override bool Execute(TilePos pos, TileEntity entity) {
         Player player = GameMaster.instance.GetPlayer();
         player.Move(pos, entity);
@@ -13,8 +13,8 @@ public class AbilityShieldBash : Ability {
         if (enemy != null) {
             Vector3 plyPos = player.GetPos().AsVectorCentered();
             Vector3 targetPos = pos.AsVectorCentered();
-            VisualEffectsHelper.instance.CreateSparks( plyPos + (targetPos - plyPos) / 2.0f);
-            enemy.TakeDamage(5);
+            VisualEffectsHelper.instance.CreateSparks(plyPos + (targetPos - plyPos) / 2.0f);
+            enemy.TakeDamage(10);
             AudioHelper.instance.Play("swish1");
         }
 
@@ -26,9 +26,9 @@ public class AbilityShieldBash : Ability {
     }
 
     public override Sprite GetIcon() {
-        return Resources.Load<Sprite>("sprites/icons/shield-bash");
+        return Resources.Load<Sprite>("sprites/icons/sword-spin");
     }
-    
+
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
         return AreaGenerator.Get4DirectionMove(relativeTo, 5);
     }

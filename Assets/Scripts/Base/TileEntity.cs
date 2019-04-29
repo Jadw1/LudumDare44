@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class TileEntity : MonoBehaviour {
 
-    protected TilePos position;
+    public TilePos position { protected set; get; }
     public bool isObstacle { protected set; get; } = false;
     private bool isMoving = false;
     protected bool doRecall = false;
