@@ -75,13 +75,14 @@ public class GameMaster : GenericSingleton<GameMaster> {
     }
 
     public void PerformAction(TilePos pos) {
-        if (!currentAbility.Execute(pos, GetTileEntity(pos))) {
+        if(!currentAbility.Execute(pos, GetTileEntity(pos))) {
             return;
         }
-        
-        if (cooldown == 0) {
+
+        if(cooldown == 0) {
             cooldown = currentAbility.GetCooldown();
-        } else {
+        }
+        else {
             cooldown--;
         }
 
@@ -106,12 +107,16 @@ public class GameMaster : GenericSingleton<GameMaster> {
     }
 
     public TileEntity GetTileEntity(TilePos pos) {
-        if(enemies.ContainsKey(pos))
-            return enemies[pos] as Enemy;
-        else if(items.ContainsKey(pos))
+        if(enemies.ContainsKey(pos)) {
+            Enemy e = enemies[pos] as Enemy;
+            if(e == null)
+                enemies.Remove(pos);
+            else
+                return e;
+        }
+        if(items.ContainsKey(pos))
             return items[pos] as RealItem;
-        else
-            return null;
+        return null;
     }
 
     public Player GetPlayer() {
@@ -137,7 +142,7 @@ public class GameMaster : GenericSingleton<GameMaster> {
 
     #region PRIVATE_METHODS
     private void EnemiesTurn() {
-        
+
 
         List<Enemy> ens = new List<Enemy>();
 
