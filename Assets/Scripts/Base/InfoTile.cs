@@ -9,12 +9,9 @@ public class InfoTile : TriggerTile {
     [SerializeField]
     private string[] messages;
 
-    private void OnMessageFinished() {
-        Destroy(gameObject);
-    }
-
     protected override void OnTriggerEnter() {
-        MessageDisplay.instance.ShowMessage(new MessageDisplay.Message(messages, OnMessageFinished));
+        MessageDisplay.instance.ShowMessage(new MessageDisplay.Message(messages, null));
+        Destroy(gameObject);
     }
 
     protected override void OnTriggerExit() {
