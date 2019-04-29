@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PressEscapeToRestart : MonoBehaviour {
     private void Update() {
         if (Input.GetButtonDown("Cancel")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(0);
         }
     }
 }

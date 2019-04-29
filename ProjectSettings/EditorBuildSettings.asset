@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ae8d8c5910e094946be7686b13478031
+  - enabled: 1
     path: Assets/Scenes/NeferiusScene.unity
     guid: eb084420c88bcfd45aef279a67537f9b
   m_configObjects: {}
