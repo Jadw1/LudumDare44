@@ -28,7 +28,7 @@ public class TilePos {
     }
 
     public Vector3 AsVectorCentered() {
-        return new Vector3(x + 0.5f, y + 0.5f, 0.0f);
+        return AsVector();
     }
 
     public Vector3 AsNormalizedVector() {
