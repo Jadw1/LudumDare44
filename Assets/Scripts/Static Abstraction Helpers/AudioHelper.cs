@@ -23,8 +23,5 @@ public class AudioHelper : GenericSingleton<AudioHelper> {
         if (clip != null) {
             audio.PlayOneShot(clip);
         }
-        else {
-            Debug.LogError("Failed to load: " + path);
-        }
     }
 }

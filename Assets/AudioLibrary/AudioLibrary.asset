@@ -29,3 +29,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 88f0ae99ea013894eb345d20d70c53da, type: 3}
   - key: rollover
     clip: {fileID: 8300000, guid: 05dc2ef75cda49246b31f4020b5bdd17, type: 3}
+  - key: book_open
+    clip: {fileID: 8300000, guid: 6345858c2bca00747bb89960eedcea03, type: 3}
+  - key: book_close
+    clip: {fileID: 8300000, guid: 8074a600dc7e2d94e8040c2176f703ae, type: 3}
+  - key: book_flip1
+    clip: {fileID: 8300000, guid: a7a2b06ce63f57e47a52f17881130bd6, type: 3}
+  - key: book_flip2
+    clip: {fileID: 8300000, guid: 8dd743e97b014b84481ed1ce896a905c, type: 3}
