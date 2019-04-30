@@ -61,6 +61,7 @@ public class Enemy : Creature {
             TilePos mv = randomMoves[random.Next(randomMoves.Length)];
             while(GameMaster.instance.IsEnemyThere(mv) && xd < 10) {
                 mv = randomMoves[random.Next(randomMoves.Length)];
+                xd++;
             }
             if(GameMaster.instance.IsEnemyThere(mv))
                 return;
