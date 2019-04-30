@@ -25,4 +25,8 @@ public class PlayerAbility : Ability {
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
         return AreaGenerator.GenerateSphericalArea(relativeTo, 2);
     }
+
+    public override TilePos[] GetHighlightedTiles(TilePos relativeTo) {
+        return new TilePos[] { relativeTo };
+    }
 }

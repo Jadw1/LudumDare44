@@ -18,4 +18,5 @@ public abstract class Ability {
 
     public abstract bool Execute(TilePos pos, TileEntity entity);
     public abstract TilePos[] GetValidTiles(TilePos relativeTo);
+    public abstract TilePos[] GetHighlightedTiles(TilePos relativeTo);
 }

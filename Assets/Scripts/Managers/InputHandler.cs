@@ -40,9 +40,11 @@ public class InputHandler : MonoBehaviour {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         TilePos gridPos = tilemap.WorldToCell(mousePos);
 
-        OverlayManager overlay = OverlayManager.GetInstance();
+        //OverlayManager overlay = OverlayManager.GetInstance();
 
-        if(gridPos != previousHighlight) {
+        gameMaster.HighlightTiles(gridPos);
+
+        /*if(gridPos != previousHighlight) {
             if(tilemap.HasOverlay(gridPos)) {
                 overlay.SetTileColorHover(gridPos);
             }
@@ -52,7 +54,7 @@ public class InputHandler : MonoBehaviour {
             }
 
             previousHighlight = gridPos;
-        }
+        }*/
 
         if (Input.GetButtonDown("Cancel")) {
             gameMaster.SetDefaultAbility();

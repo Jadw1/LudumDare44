@@ -32,4 +32,8 @@ public class AbilityShieldBash : Ability {
     public override TilePos[] GetValidTiles(TilePos relativeTo) {
         return AreaGenerator.Get4DirectionMove(relativeTo, 5);
     }
+
+    public override TilePos[] GetHighlightedTiles(TilePos relativeTo) {
+        return new TilePos[] { relativeTo };
+    }
 }

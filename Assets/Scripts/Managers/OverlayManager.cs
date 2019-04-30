@@ -19,6 +19,8 @@ public class OverlayManager : MonoBehaviour {
     private Color highlightNormal = new Color(1.0f, 1.0f, 1.0f, 0.2f);
     private Color highlightHover = new Color(1.0f, 1.0f, 0.0f, 0.2f);
 
+    private TilePos[] highlighted;
+
     public void RebuildOverlay(TilePos[] tiles) {
         TilemapManager tilemap = TilemapManager.instance;
         tilemap.ClearOverlay();
@@ -36,5 +38,22 @@ public class OverlayManager : MonoBehaviour {
     public void SetTileColorHover(TilePos tile) {
         TilemapManager tilemap = TilemapManager.instance;
         tilemap.SetOverlayColor(tile, highlightHover);
+    }
+
+    public void ClearHighlight() {
+        if(highlighted == null)
+            return;
+
+        foreach(var tile in highlighted) {
+            SetTileColorNormal(tile);
+        }
+    }
+
+    public void SetHighlight(TilePos[] toHighlight) {
+        highlighted = toHighlight;
+
+        foreach(var tile in highlighted) {
+            SetTileColorHover(tile);
+        }
     }
 }

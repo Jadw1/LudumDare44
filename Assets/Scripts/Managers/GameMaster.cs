@@ -43,23 +43,6 @@ public class GameMaster : GenericSingleton<GameMaster> {
         turnCounter = 1;
     }
 
-    /*public TilePos[] ValidateTiles(TilePos[] tiles, TilePos reletiveTo, bool ignoreEnemies = false) {
-        TilemapManager tilemap = TilemapManager.instance;
-        List<TilePos> possibilities = new List<TilePos>();
-
-        foreach(var pos in tiles) {
-            var tile = reletiveTo + pos;
-            if(tilemap.IsValidSurface(tile)) {
-                if(ignoreEnemies && IsEnemyThere(tile))
-                    continue;
-
-                possibilities.Add(tile);
-            }
-        }
-
-        return possibilities.ToArray();
-    }*/
-
     public TilePos[] AvoidEnemies(TilePos[] moves) {
         List<TilePos> possibilities = new List<TilePos>();
         foreach(var move in moves) {
@@ -150,6 +133,15 @@ public class GameMaster : GenericSingleton<GameMaster> {
         enemies.Remove(enemy.GetPos());
     }
 
+    private TilePos[] GetTileToHighlight(TilePos relativeTo) {
+        return currentAbility.GetHighlightedTiles(relativeTo);
+    }
+
+    public void HighlightTiles(TilePos relativeTo) {
+        OverlayManager overlay = OverlayManager.GetInstance();
+        overlay.ClearHighlight();
+        overlay.SetHighlight(GetTileToHighlight(relativeTo));
+    }
 
     #region PRIVATE_METHODS
     private void EnemiesTurn() {
