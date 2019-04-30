@@ -37,7 +37,6 @@ public class InfoPanelHandler : MonoBehaviour {
         if (slot == -1) {
             return;
         }
-
         itemSlot = slot;
 
         icon.enabled = true;

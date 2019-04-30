@@ -58,7 +58,7 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
     }
 
     public void DeselectItem() {
-        selection = -1;
+        //selection = -1;
         OnSelectionChange?.Invoke(-1, SlotType.GENERAL, null);
     }
 
@@ -107,11 +107,13 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
                 
                 if (items[i] == null) return;
                 items[i].uses--;
+                items[i].price /= 2;
 
                 if (items[i].uses == 0) {
                     SetItem(i, null);
                 }
                 slots[i].UpdateSlot();
+                if (selection == i) SelectItem(i);
                 return;
             }
         }
