@@ -53,7 +53,7 @@ public class AbilityButtonHandler : MonoBehaviour {
 
     public void Use() {
         if (ability != null) {
-            GameMaster.instance.SetCurrentSlot(transform.GetSiblingIndex());
+            GameMaster.instance.SetCurrentSlot(transform.parent.GetSiblingIndex());
             ability.CallGameMaster();
             AudioHelper.instance.Play("switch2");
         }
