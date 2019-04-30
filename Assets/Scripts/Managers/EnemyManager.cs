@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyManager : GenericSingleton<EnemyManager> {
@@ -12,14 +11,16 @@ public class EnemyManager : GenericSingleton<EnemyManager> {
     }
 
     private void RefillEnemies() {
+        spawners = new List<EnemySpawner>(FindObjectsOfType<EnemySpawner>());
         foreach (var spawner in spawners) {
+            if(spawner == null)
+                Debug.Log("lol");
             spawner.Spawn();
         }
     }
 
     private void Start() {
         GameMaster.OnTurnEnd += OnTurnEnd;
-        spawners = new List<EnemySpawner>(FindObjectsOfType<EnemySpawner>());
 
         RefillEnemies();
     }
