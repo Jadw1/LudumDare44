@@ -100,4 +100,20 @@ public class InventoryHandler : GenericSingleton<InventoryHandler> {
         }
         return false;
     }
+
+    public void UseItem(int currentSlot) {
+        for (int i = 0; i < slots.Length; i++) {
+            if ((int) slots[i].GetSlotType() == currentSlot + 1) {
+                
+                if (items[i] == null) return;
+                items[i].uses--;
+
+                if (items[i].uses == 0) {
+                    SetItem(i, null);
+                }
+                slots[i].UpdateSlot();
+                return;
+            }
+        }
+    }
 }

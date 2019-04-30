@@ -20,9 +20,9 @@ public class RealItem : TileEntity {
         if (item != null && item.ability == null) {
             switch (defaultAbility) {
                 case AbilityType.SHIELD_BASH: {
-                        item.ability = new AbilityShieldBash();
-                        break;
-                    }
+                    item.ability = new AbilityShieldBash();
+                    break;
+                }
                 case AbilityType.SWORD_SPIN: {
                     item.ability = new AbilitySwordSpin();
                     break;

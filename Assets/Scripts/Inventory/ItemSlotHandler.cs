@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,10 +21,12 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
     private SlotType slotType;
     
     private Image icon;
+    private TextMeshProUGUI text;
     private int slot;
     
     private void Start() {
         icon = transform.GetChild(0).GetComponent<Image>();
+        text = icon.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     public void SetSlot(int slot) {
@@ -43,9 +46,11 @@ public class ItemSlotHandler : MonoBehaviour, IDropHandler, ISelectHandler, IDes
         if (item != null) {
             icon.enabled = true;
             icon.sprite = item.icon;
+            text.text = "" + item.uses;
         } else {
             icon.sprite = null;
             icon.enabled = false;
+            text.text = "";
         }
     }
     

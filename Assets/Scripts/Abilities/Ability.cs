@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEditor;
 
 public abstract class Ability {
-
     public void CallGameMaster() {
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().ReceiveAbilityCall(this);
     }

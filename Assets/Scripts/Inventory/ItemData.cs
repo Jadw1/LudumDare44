@@ -6,6 +6,7 @@ public class ItemData {
     public string name;
     public string description;
     public int price;
+    public int uses = 4;
     public Ability ability;
 
     public ItemData() {

@@ -74,6 +74,12 @@ public class GameMaster : GenericSingleton<GameMaster> {
         return enemies.ContainsKey(pos);
     }
 
+    private int currentSlot = -1;
+
+    public void SetCurrentSlot(int slot) {
+        currentSlot = slot;
+    }
+
     public void PerformAction(TilePos pos) {
         if(!currentAbility.Execute(pos, GetTileEntity(pos))) {
             return;
@@ -86,8 +92,13 @@ public class GameMaster : GenericSingleton<GameMaster> {
             cooldown--;
         }
 
+        if (currentSlot != -1) {
+            InventoryHandler.instance.UseItem(currentSlot);
+        }
+        
         SetDefaultAbility();
-
+        currentSlot = -1;
+        
         OnTurnEnd?.Invoke(turnCounter);
 
         EnemiesTurn();
